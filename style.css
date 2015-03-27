@@ -1,0 +1,71 @@
+body {
+	color: white;
+}
+
+canvas {
+   width: 100%;
+   height: 90%;
+	 border-style: solid;
+	 border-width: 1px;
+ }
+
+#page1, #page3, .slide {
+	background-color: #C63D0F;
+}
+
+#page2, #page4 {
+	background-color: #1BBC9B;
+}
+
+.section {
+	text-align: center;
+	padding-top: 50px;
+}
+
+.content {
+	width: 960px;
+	margin: 0 auto;
+	margin-bottom: 50px;
+}
+
+.fp-slidesNav.bottom {
+	bottom: 25px;
+}
+
+#header {
+	position: fixed;
+	height: 50px;
+	display: block;
+	width: 100%;
+	background: #333;
+	z-index:9;
+	text-align: center;
+	color: #f2f2f2;
+}
+
+#myMenu {
+	height: auto;
+	padding: 13px 0;
+	margin: 0px;
+
+	font-size: 20px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 3px 2px 3px #333333; 
+}
+
+#myMenu li {
+	display: inline;
+	padding: 20px;
+}
+
+.active a, #myMenu a:hover {
+	color: red !important;
+}
+
+#myMenu a:link, #myMenu a:visited {
+	text-decoration: none;
+	color: white;
+}
+
