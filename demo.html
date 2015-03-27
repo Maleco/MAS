@@ -28,25 +28,25 @@ canvas {
 <button onClick="init()">ReInit</button>
 
 <script>
-// make a new graph
+// make n12 new graph
 var graph = new Springy.Graph();
 
 // make some nodes
-var a = graph.newNode({label: 'a:11000'});
-var b = graph.newNode({label: 'b:10100'});
-var c = graph.newNode({label: 'c:10010'});
-var d = graph.newNode({label: 'd:10001'});
-var e = graph.newNode({label: 'e:01100'});
-var f = graph.newNode({label: 'f:01010'});
-var g = graph.newNode({label: 'g:01001'});
-var h = graph.newNode({label: 'h:00110'});
-var i = graph.newNode({label: 'i:00101'});
-var j = graph.newNode({label: 'j:00011'});
+var n12 = graph.newNode({label: 'a:11000'});
+var n13 = graph.newNode({label: 'b:10100'});
+var n14 = graph.newNode({label: 'c:10010'});
+var n15 = graph.newNode({label: 'd:10001'});
+var n23 = graph.newNode({label: 'e:01100'});
+var n24 = graph.newNode({label: 'f:01010'});
+var n25 = graph.newNode({label: 'g:01001'});
+var n34 = graph.newNode({label: 'h:00110'});
+var n35 = graph.newNode({label: 'i:00101'});
+var n45 = graph.newNode({label: 'j:00011'});
 
 function addS5Edges(nodes, label, color) {
-   for (var i = 0; i < nodes.length; i++) {
-      for (var j = i+1; j < nodes.length; j++) {
-         graph.newEdge(nodes[i], nodes[j], {'label': label, 'color': color});
+   for (var n35 = 0; n35 < nodes.length; n35++) {
+      for (var n45 = n35+1; n45 < nodes.length; n45++) {
+         graph.newEdge(nodes[n35], nodes[n45], {'label': label, 'color': color});
       }
    }
 }
@@ -78,21 +78,21 @@ function my_focus(label) {
    graph.notify()
 }
 
-setTimeout(function() {addS5Edges([e,f,g,h,i,j],'1', '#FF0000')}, 0000);
-setTimeout(function() {addS5Edges([b,c,d,h,i,j],'2', '#0000FF')  }, 3000);
-setTimeout(function() {addS5Edges([a,c,d,f,g,j],'3', '#00FF00') }, 6000);
-setTimeout(function() {addS5Edges([a,b,d,e,g,i],'4', '#FF6600')}, 9000);
-setTimeout(function() {addS5Edges([a,b,c,e,f,h],'5', '#FF00FF')}, 12000);
+setTimeout(function() {addS5Edges([n23,n24,n25,n34,n35,n45],'1', '#FF0000')}, 0000);
+setTimeout(function() {addS5Edges([n13,n14,n15,n34,n35,n45],'2', '#0000FF')  }, 3000);
+setTimeout(function() {addS5Edges([n12,n14,n15,n24,n25,n45],'3', '#00FF00') }, 6000);
+setTimeout(function() {addS5Edges([n12,n13,n15,n23,n25,n35],'4', '#FF6600')}, 9000);
+setTimeout(function() {addS5Edges([n12,n13,n14,n23,n24,n34],'5', '#FF00FF')}, 12000);
 
 function init() {
    graph.nodes.forEach(function (node) {
       graph.detachNode(node);
    });
-   addS5Edges([e,f,g,h,i,j],'1', '#FF0000')   
-   addS5Edges([b,c,d,h,i,j],'2', '#0000FF')  
-   addS5Edges([a,c,d,f,g,j],'3', '#00FF00') 
-   addS5Edges([a,b,d,e,g,i],'4', '#FF6600')
-   addS5Edges([a,b,c,e,f,h],'5', '#FF00FF')
+   addS5Edges([n23,n24,n25,n34,n35,n45],'1', '#FF0000')   
+   addS5Edges([n13,n14,n15,n34,n35,n45],'2', '#0000FF')  
+   addS5Edges([n12,n14,n15,n24,n25,n45],'3', '#00FF00') 
+   addS5Edges([n12,n13,n15,n23,n25,n35],'4', '#FF6600')
+   addS5Edges([n12,n13,n14,n23,n24,n34],'5', '#FF00FF')
 }
 
 $('#my_canvas').springy({ graph: graph });
