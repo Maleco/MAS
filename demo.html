@@ -1,8 +1,8 @@
 <html>
 <head>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-<script src="//getspringy.com/springy.js"> </script>
-<script src="//getspringy.com/springyui.js"> </script>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="http://getspringy.com/springy.js"> </script>
+<script src="http://getspringy.com/springyui.js"> </script>
 <style>
 body {
    width: 99%;
@@ -32,16 +32,16 @@ canvas {
 var graph = new Springy.Graph();
 
 // make some nodes
-var a = graph.newNode({label: '11000'});
-var b = graph.newNode({label: '10100'});
-var c = graph.newNode({label: '10010'});
-var d = graph.newNode({label: '10001'});
-var e = graph.newNode({label: '01100'});
-var f = graph.newNode({label: '01010'});
-var g = graph.newNode({label: '01001'});
-var h = graph.newNode({label: '00110'});
-var i = graph.newNode({label: '00101'});
-var j = graph.newNode({label: '00011'});
+var a = graph.newNode({label: 'a:11000'});
+var b = graph.newNode({label: 'b:10100'});
+var c = graph.newNode({label: 'c:10010'});
+var d = graph.newNode({label: 'd:10001'});
+var e = graph.newNode({label: 'e:01100'});
+var f = graph.newNode({label: 'f:01010'});
+var g = graph.newNode({label: 'g:01001'});
+var h = graph.newNode({label: 'h:00110'});
+var i = graph.newNode({label: 'i:00101'});
+var j = graph.newNode({label: 'j:00011'});
 
 function addS5Edges(nodes, label, color) {
    for (var i = 0; i < nodes.length; i++) {
