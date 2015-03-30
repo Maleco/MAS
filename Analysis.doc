@@ -1,0 +1,67 @@
+{\rtf1\ansi\ansicpg1252\deff0\uc1
+{\fonttbl
+{\f0\fnil\fcharset0\fprq0\fttruetype Times New Roman;}
+{\f1\fnil\fcharset0\fprq0\fttruetype Arial;}
+{\f2\fnil\fcharset0\fprq0\fttruetype Courier New;}}
+{\colortbl
+\red0\green0\blue0;
+\red255\green255\blue255;
+\red255\green255\blue255;
+\red54\green95\blue145;}
+{\stylesheet
+{\s5\tx1584\sbasedon33\snext31 Chapter Heading;}
+{\s3\fi-431\li720 Box List;}
+{\*\cs22\cf3\f0\fs28\b\sbasedon12 Heading 1 Char;}
+{\s32\sbasedon31 Normal Table;}
+{\s28\fi-431\li720\sbasedon36 Lower Case List;}
+{\s45\sbasedon31 _Normal;}
+{\s42\fi-431\li720 Triangle List;}
+{\s43\fi-431\li720\sbasedon36 Upper Case List;}
+{\s23\sb440\sa60\f1\fs28\b\sbasedon31\snext31 Heading 2;}
+{\s4\fi-431\li720 Bullet List;}
+{\s25\sb440\sa60\f1\fs24\b\sbasedon31\snext31 Heading 4;}
+{\s30\sbasedon31 No List;}
+{\s1\fi-431\li720 Arrowhead List;}
+{\*\cs12\sbasedon31 Default Paragraph Font;}
+{\s39\fi-431\li720 Square List;}
+{\s10\qc\sb240\sa120\f1\fs32\b\sbasedon31\snext31 Contents Header;}
+{\s21\sb440\sa60\f1\fs34\b\sbasedon31\snext31 Heading 1;}
+{\s19\fs20\sbasedon31 Footnote Text;}
+{\s24\sb440\sa60\f1\fs24\b\sbasedon31\snext31 Heading 3;}
+{\s36\fi-431\li720 Numbered List;}
+{\s13\fi-431\li720 Diamond List;}
+{\s26\fi-431\li720 Heart List;}
+{\s2\li1440\ri1440\sa120\sbasedon31 Block Text;}
+{\s44\fi-431\li720\sbasedon36 Upper Roman List;}
+{\s31\sl276\slmult1\sa200\f0\fs22\lang1025\sbasedon31 Normal;}
+{\s20\fi-431\li720 Hand List;}
+{\s37\f2\sbasedon31 Plain Text;}
+{\s40\fi-431\li720 Star List;}
+{\s38\tx1584\sbasedon33\snext31 Section Heading;}
+{\s27\fi-431\li720 Implies List;}
+{\s41\fi-431\li720 Tick List;}
+{\s46\sb480\cf3\f0\fs28\b\sbasedon45\snext45 heading 1;}
+{\s14\fi-288\li288\sbasedon31 Endnote;}
+{\s11\fi-431\li720 Dashed List;}
+{\s29\fi-431\li720\sbasedon31 Lower Roman List;}
+{\*\cs18\fs20\super Footnote Reference;}
+{\s16\sbasedon31 Endnote Text;}
+{\*\cs15\fs20\super Endnote Reference;}
+{\s33\tx431\sbasedon21\snext31 Numbered Heading 1;}
+{\s34\tx431\sbasedon23\snext31 Numbered Heading 2;}
+{\s35\tx431\sbasedon24\snext31 Numbered Heading 3;}
+{\s17\fi-288\li288\fs20\sbasedon31 Footnote;}
+{\s6\fi-431\li720\sbasedon31\snext31 Contents 1;}
+{\s7\fi-431\li1440\sbasedon31\snext31 Contents 2;}
+{\s8\fi-431\li2160\sbasedon31\snext31 Contents 3;}
+{\s9\fi-431\li2880\sbasedon31\snext31 Contents 4;}}
+\kerning0\cf0\ftnbj\fet2\ftnstart1\ftnnar\aftnnar\ftnstart1\aftnstart1\aenddoc\revprop3{\*\rdf}{\info\uc1}\deftab720\viewkind1\paperw11905\paperh16837\margl1440\margr1440\widowctrl
+\sectd\sbknone\colsx360\headery0\footery0\margtsxn1417\margbsxn1417\marglsxn1417\margrsxn1417\pgncont\ltrsect
+\pard\plain\ltrpar\ql\sb480\s46\sl276\slmult1\itap0{\s46\cf3\f0\fs28\b\lang1033{\*\listtag0}\abinodiroverride\ltrch Analysis}{\s46\cf3\f0\fs28\b\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\ql\sa200\sl276\slmult1\itap0{\f0\fs22\lang1033{\*\listtag0}\abinodiroverride\ltrch Let us first look at the simplest version of the game. In this version, there are two Spies and three Good players, who will go on five missions. Good Players will always succeed a mission, and Spies always have to fail if they\uc1\u8217\'92re on a mission. Although this might not be the most interesting way to play the game, it is a little bit easier to analyze. We could use this analysis as a basis for more elaborate versions of the game.\line Initially, the Kripke model will look like this:}{\f0\fs22\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\ql\sa200\sl276\slmult1\itap0{\f0\fs22\lang1033{\*\listtag0}\abinodiroverride\ltrch No player can distinguish between the worlds where they are not Spies themselves. From a world where a player is a Spy, that world is also the only reachable world, since the player then knows the actual alignment of all the players.\line The names of the worlds in this model correspond to the players that are Spies. For instance, in world (1, 2), player 1 and player 2 are Spies. Now let\uc1\u8217\'92s assume that propositional atom a stands for \uc1\u8220\'93player 1 is a Spy\uc1\u8221\'94, b stands for \uc1\u8220\'93player 2 is a Spy\uc1\u8221\'94, etcetera. Then we can also say that in world (1, 2), a and b are both true, and therefore (a^b) holds.\line In this version of the game, there are three distinct possibilities for the first mission: a mission with one Spy, a mission with two Spies and a mission without any spies. Let\uc1\u8217\'92s look at all of these different possibilities. \line If two Spies go on the first mission, they will both fail the mission. In this case, everybody knows that the two Spies were on this mission. Let\uc1\u8217\'92s assume that those Spies were player 1 and 2. The Kripke model will look like this afterwards:}{\f0\fs22\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\ql\sa200\sl276\slmult1\itap0{\f0\fs22\lang1033{\*\listtag0}\abinodiroverride\ltrch As you can see, only one possible world is left. This world is also the real world, where 1 and 2 are Spies. Since it is the only possible reachable world for all players, it is also common knowledge that 1 and 2 are Spies. In this case, the Good players have already won. They can just reject every mission with one of the Spies on it.\line Let us now look at one of the other cases, which is a little bit more interesting. If there are two Good players on the first mission, the mission succeeds. Let\uc1\u8217\'92s say that player 3 and 4 went on this mission. Since there are no fails, every player now knows that players 3 and 4 are not Spies and that they are, in fact, Good. Therefore, the worlds where one of them is a Spy aren\uc1\u8217\'92t possible for any of the players anymore. The Kripke model now looks like this:}{\f0\fs22\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\ql\sa200\sl276\slmult1\itap0{\f0\fs22\lang1033{\*\listtag0}\abinodiroverride\ltrch In this case, every player knows that between players 1, 2 and 5 there are two Spies. Player 5 now knows the true world. Since he knows he isn\uc1\u8217\'92t a Spy himself, and he knows that 3 and 4 are not Spies, he can now deduce that player 1 and 2 are Spies. You can also see this in the Kripke model. World (1,2) is the only reachable world for player 5. Therefore, M}{\f0\fs22\sub\lang1033{\*\listtag0}1,2}{\f0\fs22\lang1033{\*\listtag0} }{\f0\fs22\b\lang1033{\*\listtag0}it is true that}{\f0\fs22\lang1033{\*\listtag0} K}{\f0\fs22\sub\lang1033{\*\listtag0}5}{\f0\fs22\lang1033{\*\listtag0}(a^b). If K}{\f0\fs22\sub\lang1033{\*\listtag0}5}{\f0\fs22\lang1033{\*\listtag0} is not a Spy, e is not true. This is only the case in world (1, 2). In this world, (a^b) also holds. Thus, M }{\f0\fs22\b\lang1033{\*\listtag0}it is always true that }{\f1\fs22\lang1033{\*\listtag0}\'ace \uc0\u8594  (a^b). It is even the case that M }{\f1\fs22\b\lang1033{\*\listtag0}it is always true that }{\f1\fs22\lang1033{\*\listtag0}\'ace \uc0\u8594  K}{\f1\fs22\sub\lang1033{\*\listtag0}5}{\f1\fs22\lang1033{\*\listtag0}(a^b). Intuitively, this also seems logical. Players now know that if player 5 is a Good guy, 1 and 2 are Spies, and 5 also knows this. The same can be said about 1 and 2.\line With two good players on the first mission, the Good Players can also always win. They can just put one of the three players that weren\uc1\u8217\'92t on the first mission on the next missions to discern who the Spies are in at most two missions (which would result in at most two fails). If one of those missions fails, the players know that the player that wasn\uc1\u8217\'92t player 3 or 4 is a Spy. If it doesn\uc1\u8217\'92t, he must be Good. Let us look what happens with the knowledge when 3, 4 and 2 go on the second mission. Since 2 is a Spy, this mission will fail. Every world where one of the Spies isn\uc1\u8217\'92t player 3, 4 and 2 is not reachable for any of the players after this mission. Since the worlds where player 3 or 4 were Spies are already gone, only worlds where player 2 is a Spy will remain. This results in the following Kripke model:}{\f0\fs22\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\ql\sa200\sl276\slmult1\itap0{\f0\fs22\lang1033{\*\listtag0}\abinodiroverride\ltrch In all of the remaining worlds, b is true. Therefore, it is common knowledge that 2 is a Spy.\line On the next mission, the same tactic can be used to see what the alignment of player 1 or 5 is. This automatically reveals the alignment of the last unknown player. Everybody now knows who the Spies are and only one world will be left. The Good players can now leave the Spies out of the last mission, which will result in a victory for the Good team.\line There is one option left for the first mission, which is probably the most interesting one. If there is one Spy on the mission, the mission will fail, but players that were not on that mission will not know which of the two players was a Spy. Let us look at the case where 1 and 3 go on the first mission. After this mission, every world where 1 and 3 both aren\uc1\u8217\'92t Spies and the world where they are both Spies won\uc1\u8217\'92t be reachable anymore, and the Kripke model will look like this:}{\f0\fs22\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\ql\sa200\sl276\slmult1\itap0{\f0\fs22\lang1033{\*\listtag0}\abinodiroverride\ltrch As you can see, in all worlds that are reachable for player 3 where 3 is not a Spy himself, 1 is a Spy. We can therefore conclude that }{\f1\fs22\lang1033{\*\listtag0}M }{\f1\fs22\b\lang1033{\*\listtag0}it is always true that }{\f1\fs22\lang1033{\*\listtag0}\'acc \uc0\u8594  K}{\f1\fs22\sub\lang1033{\*\listtag0}3}{\f1\fs22\lang1033{\*\listtag0}a. The same can be said about 1. So, if player 1 was a Good player, he would now know 3 is a Spy.\line Since every player knows that 1 and 3 can\uc1\u8217\'92t both be Spies, they know there must be at least one Spy amongst the remaining players. You can also see this in the Kripke model: in every world that is reachable for at least one agent, b, d or e is true. Therefore, we can say that M }{\f1\fs22\b\lang1033{\*\listtag0}it is always true that }{\f1\fs22\lang1033{\*\listtag0}(bvdve). We assume that every player proposes and votes on missions as if they were a Good player, so it wouldn\uc1\u8217\'92t make sense for any of the players to propose players 2, 4 and 5 together for the next mission. They already know there is one Spy amongst those players, so it will never gain them new information. Putting both 1 and 3 on the second mission doesn\uc1\u8217\'92t make much sense either. It is already known that one of them is a Spy, so the mission will definitely fail. This will result in the second point for the Spies, but it still won\uc1\u8217\'92t be possible to know if 1 or 3 is a Spy. Therefore, the Good players have a very small chance of winning if they do this. If we rule out the previous two teams out for mission two, three possibilities remain. If 3, 4 and 5 go on the second mission, the mission will succeed. This will mean that every world where 3, 4 or 5 was a Spy will not be possible for the players anymore. The only remaining world, then, is the one where 1 and 2 are Spies, so it becomes common knowledge that they are. The Good players have now won.\line The second possibility is that the second mission contains both of the Spies. If, for example, 1, 2 and 4 are put on a mission, the mission will show two fails. This will reveal that every player that wasn\uc1\u8217\'92t on that mission can never be a Spy, so every world where they are will not be possible anymore. Since 3 wasn\uc1\u8217\'92t on that mission and every world contained either 1 or 3 after the first mission, everybody can now conclude that player 3 is a Spy. This is also visible in the resulting Kripke model:}{\f0\fs22\lang1033{\*\listtag0}\par}
+\pard\plain\ltrpar\ql\sa200\sl276\slmult1\itap0{\f1\fs22\lang1033{\*\listtag0}\abinodiroverride\ltrch In all of the remaining worlds, a is true. Thus, M }{\f1\fs22\b\lang1033{\*\listtag0}it is always true that }{\f1\fs22\lang1033{\*\listtag0}a. This has now become common knowledge. Furthermore, from the model it follows that M }{\f1\fs22\b\lang1033{\*\listtag0}it is always true that }{\f1\fs22\lang1033{\*\listtag0}\'acd \uc0\u8594  }{\f1\fs22\b\lang1033{\*\listtag0} }{\f1\fs22\lang1033{\*\listtag0}K}{\f1\fs22\sub\lang1033{\*\listtag0}4}{\f1\fs22\lang1033{\*\listtag0}(a^b). In the true world, (1, 2), the Spies also know this, so, as you can see in the Kripke model, M}{\f1\fs22\sub\lang1033{\*\listtag0}12}{\f1\fs22\lang1033{\*\listtag0} }{\f1\fs22\b\lang1033{\*\listtag0}it is true that }{\f1\fs22\lang1033{\*\listtag0}K}{\f1\fs22\sub\lang1033{\*\listtag0}1}{\f1\fs22\lang1033{\*\listtag0}(K}{\f1\fs22\sub\lang1033{\*\listtag0}4}{\f1\fs22\lang1033{\*\listtag0}(a^b)) ^ K}{\f1\fs22\sub\lang1033{\*\listtag0}2}{\f1\fs22\lang1033{\*\listtag0}(K}{\f1\fs22\sub\lang1033{\*\listtag0}4}{\f1\fs22\lang1033{\*\listtag0}(a^b)).}{\*\bkmkstart _GoBack}{\*\bkmkend _GoBack}{\f1\fs22\lang1033{\*\listtag0} We can even conclude from the Kripke model that M }{\f1\fs22\b\lang1033{\*\listtag0}it is always true that }{\f1\fs22\lang1033{\*\listtag0}(\'aca \uc0\u8594  K}{\f1\fs22\sub\lang1033{\*\listtag0}1}{\f1\fs22\lang1033{\*\listtag0}(K}{\f1\fs22\sub\lang1033{\*\listtag0}4}{\f1\fs22\lang1033{\*\listtag0}(a^b))) ^ (\'acb \uc0\u8594  K}{\f1\fs22\sub\lang1033{\*\listtag0}2}{\f1\fs22\lang1033{\*\listtag0}(K}{\f1\fs22\sub\lang1033{\*\listtag0}4}{\f1\fs22\lang1033{\*\listtag0}(a^b))). Every player also knows this.}{\f1\fs22\lang1033{\*\listtag0}\par}}
