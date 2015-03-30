@@ -9,14 +9,6 @@ canvas {
 	 border-width: 1px;
  }
 
-#page1, #page3, .slide {
-	background-color: #C63D0F;
-}
-
-#page2, #page4 {
-	background-color: #1BBC9B;
-}
-
 .section {
 	text-align: center;
 	padding-top: 50px;
@@ -26,6 +18,11 @@ canvas {
 	width: 960px;
 	margin: 0 auto;
 	margin-bottom: 50px;
+}
+
+.content a, .content a:visited {
+	text-decoration: none;
+	color: blue;
 }
 
 .fp-slidesNav.bottom {
@@ -60,7 +57,7 @@ canvas {
 	padding: 20px;
 }
 
-.active a, #myMenu a:hover {
+#myMenu .active a, #myMenu a:hover {
 	color: red !important;
 }
 
