@@ -13,25 +13,69 @@
 	<body> 
 		<div id="header">
 			<ul id="myMenu">
-				<li data-menuanchor="firstPage" class="active"><a href="#firstPage">Introduction</a></li>
-				<li data-menuanchor="secondPage"><a href="#secondPage">             Analysis</a></li>
-				<li data-menuanchor="thirdPage"><a href="#thirdPage">               Demo</a></li>
-				<li data-menuanchor="fourthPage"><a href="#fourthPage">             About</a></li>
+				<li data-menuanchor="introAnchor" class="active"><a href="#introAnchor">     Introduction</a></li>
+				<li data-menuanchor="resistanceAnchor">          <a href="#resistanceAnchor">The Resistance</a></li>
+				<li data-menuanchor="analysisAnchor">            <a href="#analysisAnchor">  Analysis</a></li>
+				<li data-menuanchor="demoAnchor">                <a href="#demoAnchor">      Demo</a></li>
+				<li data-menuanchor="aboutAnchor">               <a href="#aboutAnchor">     About</a></li>
 			</ul>
 		</div>
 		<div id="fullpage">
-			<div id="page1" class="section"><div class="content">
+			<div id="intro" class="section"><div class="content">
 					<h1>Introduction</h1>	
+					<p>
 					Welcome to our Multi-Agent Systems' Final Paper in the form of a (at the moment very ugly) website.
+					</p>
+					<p>
+					We decided to devote our project to the analysis of the popular-amongst-its-players game of 
+					<a href="https://en.wikipedia.org/wiki/The_Resistance_%28game%29">"The Resistance"</a>.
+					</p>
+					<p>
+					On the next pages we will first explain the basic game + extentions, give our analysis and present you a piece of code that lets you create your own Kripke models.<br>
+					The about page gives you some information about ourselves, meant for the stalkers among you.
+					</p><p>
+					Navigation can be done via the header-menu or the arrow keys. Some pages consist of several slides, indicated by the white arrows on the sides.
+					</p>
 				</div>
 			</div>
 
-			<div id="page2" class="section"><div class="content">
+			<div id="resistance" class="section"><div class="content">
+					<h1>The Resistance</h1>	
+					<h2>Game Description</h2>
+					<p>
+					The Resistance is a social deduction game, commonly compared to the games Werewolves and 
+					Mafia, with a team of "Good" characters competing against a team of "Bad" or "Spy" characters. The 
+					Spy characters know their fellow Spy characters, whereas the Good characters only know their own 
+					roles. The game consists of up to five rounds, with each round giving one point to either the Good or Spy 
+					team. The first team to get 3 points wins.</p><p>
+					At the end of each round, a set of nominated players goes on a mission that requires 
+					cooperation from everyone on the mission. A Good character will always cooperate, whereas a Spy 
+					character has the option to sabotage the mission. If everyone on the mission team cooperates, then the 
+					Good team gets a point. If any Spy character on the mission team sabotages it, then the Spy team gets 
+					a point, and the Good team knows at least one team member was a Spy (but not which). </p><p>
+					To choose the mission team, players go in a circle proposing teams of n players. If the majority 
+					of the players approve of the team, then that team goes on the mission. Otherwise, the next player 
+					proposes a team, and the process is repeated. If everyone's nomination gets rejected, then the Bad 
+					team automatically wins. The size of the mission team, n, changes for each round. </p><p>
+					In addition to the standard "Good" and "Spy" roles, there exists optional roles which add or 
+					obscure knowledge in various ways: 
+					<ul style="text-align: left">
+						<li> A Good character, "Merlin", that knows who all the Spies are. However, if at any point the Spies know who Merlin is, the Spies instantly win. </li>
+						<li> A Good character, "Percival", that knows Merlin and one Spy, but cannot distinguish between them.</li> 
+						<li> A Spy character, "Mordred", that is unknown to Merlin. </li>
+						<li> A Spy character, "Oberon", that is unknown to other Spies, and does not know the other Spies. </li>
+						<li> A pair of characters, the "Lancelots", whose allegiance may switch at random moments in the game.</li>
+					</ul>
+					</p>
+				</div>
+			</div>
+
+			<div id="analysis" class="section"><div class="content">
 					<h1>Analysis</h1>	
 				</div>
 			</div>
 
-			<div id="page3" class="section">
+			<div id="demo" class="section">
 
 				<div class="slide"><div class="content">
 						<h1>Demo</h1>	
@@ -53,27 +97,8 @@
 				</div>
 			</div>
 
-			<div id="page4" class="section"><div class="content">
+			<div id="about" class="section"><div class="content">
 					<h2>This page is all about us :) </h2>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et posuere diam, a hendrerit risus. In tempus imperdiet nunc. Aliquam venenatis a mi vitae lacinia. In at mauris tempor mi ullamcorper pharetra. Praesent semper aliquet blandit. Morbi sed viverra nulla. Suspendisse suscipit eu justo quis volutpat. Nullam quis justo interdum, vestibulum neque nec, bibendum orci. Sed lobortis ut massa vitae tempor. Mauris facilisis varius leo. Nullam justo nulla, suscipit eu consectetur ac, porta ut neque. Sed posuere facilisis sollicitudin. Nullam id elementum lectus, eget vestibulum metus. Nulla eget neque eu lorem tristique ornare.
-
-					Integer scelerisque urna iaculis aliquet efficitur. Vestibulum interdum felis urna, pretium faucibus eros fringilla vitae. Vestibulum magna magna, pellentesque sed ornare et, facilisis non ipsum. Vestibulum imperdiet nisi non neque viverra efficitur. Maecenas posuere mattis neque, et rhoncus tellus gravida at. Aenean eget purus quis urna volutpat placerat. Ut auctor turpis a libero interdum vehicula. Vivamus tempus turpis id lacinia maximus. Donec pretium neque neque. Mauris quis ipsum augue. Aliquam vel imperdiet risus, sed porttitor quam. Nulla sed hendrerit augue. Aliquam urna lorem, elementum faucibus lectus quis, bibendum consequat ligula. Vestibulum vel nibh in nisl consectetur egestas nec dapibus augue. Sed maximus, augue in scelerisque viverra, erat nunc pharetra magna, id ultrices diam orci sit amet purus.
-
-					Aenean interdum felis eu venenatis vulputate. Aliquam eget ipsum fermentum, scelerisque justo non, tristique justo. Donec vel condimentum turpis. Quisque bibendum pellentesque ultricies. Vivamus tincidunt ultrices nulla dignissim porttitor. Aliquam varius eu augue ut bibendum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec accumsan, dolor non consectetur tristique, dolor orci fermentum dui, sed placerat nunc justo a arcu. Cras neque lacus, tincidunt id auctor non, iaculis eget leo. In dictum est vitae magna blandit, id consectetur odio luctus.
-
-					Aenean mollis vulputate lorem, at viverra nunc porta mattis. Vivamus vel dapibus massa. Vivamus sit amet tristique nisi, ut ullamcorper turpis. Suspendisse non ante id quam molestie malesuada nec non neque. Mauris et dictum augue, et aliquam dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus id tellus tortor.
-
-					Nulla ut nisl dui. Etiam ac sollicitudin nunc. Suspendisse potenti. Mauris volutpat ac turpis sit amet volutpat. Integer ut sagittis nunc. Pellentesque id justo sapien. Vestibulum et dolor odio. Maecenas iaculis at massa eget mollis.
-
-					Aliquam erat volutpat. Curabitur a arcu iaculis, pharetra quam id, vulputate lectus. Proin sed convallis leo. Pellentesque a interdum urna, sed elementum sem. Mauris sagittis lectus ac orci molestie sollicitudin. Suspendisse bibendum convallis fringilla. Sed sed consequat eros. Praesent sed urna at eros sagittis rutrum. Curabitur congue finibus nunc nec vulputate. Donec nec ante mattis, facilisis turpis nec, aliquam orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam condimentum erat ut mollis interdum. Maecenas mattis magna convallis, facilisis est quis, posuere nunc. Cras vitae odio semper, pulvinar diam id, fermentum arcu.
-
-					Nulla consequat, sapien sed blandit vestibulum, sapien felis varius arcu, sit amet ultricies odio nisl fringilla est. Praesent bibendum, mi sit amet cursus pulvinar, nunc risus efficitur nibh, sed cursus odio turpis at augue. Donec ex tellus, tincidunt fringilla quam vel, porta rutrum justo. Vivamus et luctus ligula. Curabitur quis augue ex. Quisque laoreet efficitur dolor nec condimentum. Nunc vestibulum ligula ut commodo porttitor. Nullam placerat tempor mattis. Maecenas aliquam ligula ac sodales lobortis. Sed convallis est urna, eu lobortis elit maximus vitae. Aliquam nec augue neque. Aliquam sed interdum massa. Maecenas consequat, tortor eu ultrices efficitur, orci felis sagittis purus, id laoreet nunc nisi vulputate eros.
-
-					Morbi id odio porta, pharetra ipsum sed, hendrerit dolor. Sed ut vehicula lectus, et malesuada dui. Aenean quis bibendum augue. Phasellus convallis, ligula ut facilisis condimentum, mi libero egestas mauris, ut congue felis enim sed risus. In egestas purus odio, ac tincidunt ligula dignissim ut. Donec at lorem sit amet magna sollicitudin sodales quis tristique lorem. Mauris purus eros, dapibus eget ullamcorper ac, cursus non lacus. Ut non sapien malesuada, lacinia tortor sed, porttitor sapien. Phasellus eu scelerisque ipsum. Ut eget laoreet libero. In diam nisl, consectetur rutrum dictum id, tempor vel velit.
-
-					Etiam lacinia lectus et eros semper efficitur. Fusce porta lobortis purus, quis congue diam gravida nec. Pellentesque id dui tempor, pretium metus mollis, pellentesque metus. Duis volutpat nunc et ipsum bibendum, ut finibus est maximus. Praesent turpis arcu, sollicitudin vel leo quis, malesuada ultricies libero. Sed blandit, leo eu rutrum bibendum, mi ipsum pretium nulla, eget dictum lectus purus vitae nunc. Nunc viverra eros nec aliquam malesuada. Fusce lectus arcu, interdum non dignissim quis, suscipit quis lacus. Maecenas eros augue, feugiat at sollicitudin quis, vestibulum non diam. Vestibulum eget elementum est.
-
-					Cras ipsum eros, tempor quis erat faucibus, iaculis feugiat nisl. Sed facilisis, nulla non vulputate sagittis, metus erat efficitur libero, vitae egestas leo diam sit amet velit. Donec tempus elit ut varius cursus. Phasellus pellentesque pulvinar elementum. Morbi a vehicula lectus. Pellentesque sed egestas turpis. Vestibulum placerat urna non elit fringilla, at volutpat odio tincidunt. Vestibulum efficitur tortor ut mattis semper. Duis lacinia pulvinar massa, non sollicitudin urna ultrices ac. Sed sodales urna vitae risus pharetra scelerisque. Praesent nunc odio, hendrerit non mauris eget, bibendum dictum felis.
 				</div>
 			</div>
 
@@ -81,7 +106,8 @@
 		<script>
 $(document).ready(function() {
 	$('#fullpage').fullpage({ 
-		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+		anchors: ['introAnchor', 'resistanceAnchor', 'analysisAnchor', 'demoAnchor', 'aboutAnchor', 'lastpageAnchor'],
+		sectionsColor: ['#C63D0F', '#1BBC9B','#C63D0F', '#1BBC9B','#C63D0F', '#1BBC9B'],
 		menu: '#myMenu',
 		slidesNavigation: true,
 		scrollOverflow: true,
