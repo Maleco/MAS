@@ -1,172 +1,169 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
-		<link rel="stylesheet" type="text/css" href="style.css" />
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="http://getspringy.com/springy.js"> </script>
-		<script src="http://getspringy.com/springyui.js"> </script>
-		<script type="text/javascript" src="jquery.fullPage.min.js"></script>
-		<script type="text/javascript" src="jquery.slimscroll.min.js"></script>
-	</head>
+<head>
+<link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://getspringy.com/springy.js"> </script>
+<script src="http://getspringy.com/springyui.js"> </script>
+<script type="text/javascript" src="jquery.fullPage.min.js"></script>
+<script type="text/javascript" src="jquery.slimscroll.min.js"></script>
+</head>
 
-	<body> 
-		<div id="header">
-			<ul id="myMenu">
-				<li data-menuanchor="introAnchor" class="active"><a href="#introAnchor">     Introduction</a></li>
-				<li data-menuanchor="resistanceAnchor">          <a href="#resistanceAnchor">The Resistance</a></li>
-				<li data-menuanchor="analysisAnchor">            <a href="#analysisAnchor">  Analysis</a></li>
-				<li data-menuanchor="demoAnchor">                <a href="#demoAnchor">      Demo</a></li>
-				<li data-menuanchor="aboutAnchor">               <a href="#aboutAnchor">     About</a></li>
+<body> 
+<div id="header">
+	<ul id="myMenu">
+		<li data-menuanchor="introAnchor" class="active"><a href="#introAnchor">     Introduction</a></li>
+		<li data-menuanchor="resistanceAnchor">          <a href="#resistanceAnchor">The Resistance</a></li>
+		<li data-menuanchor="analysisAnchor">            <a href="#analysisAnchor">  Analysis</a></li>
+		<li data-menuanchor="demoAnchor">                <a href="#demoAnchor">      Demo</a></li>
+		<li data-menuanchor="aboutAnchor">               <a href="#aboutAnchor">     About</a></li>
+	</ul>
+</div>
+<div id="fullpage">
+	<div id="intro" class="section"><div class="content">
+			<h1>Introduction</h1>	
+			<p>
+			Welcome to our Multi-Agent Systems' Final Paper in the form of a (at the moment very ugly) website.
+			</p>
+			<p>
+			We decided to devote our project to the analysis of the popular-amongst-its-players game of 
+			<a href="https://en.wikipedia.org/wiki/The_Resistance_%28game%29">"The Resistance"</a>.
+			</p>
+			<p>
+			On the next pages we will first explain the basic game + extentions, give our analysis and present you a piece of code that lets you create your own Kripke models.<br>
+			The about page gives you some information about ourselves, meant for the stalkers among you.
+			</p><p>
+			Navigation can be done via the header-menu or the arrow keys. Some pages consist of several slides, indicated by the white arrows on the sides.
+			</p>
+		</div>
+	</div>
+
+	<div id="resistance" class="section"><div class="content">
+			<h1>The Resistance</h1>	
+			<h2>Game Description</h2>
+			<p>
+			The Resistance is a social deduction game, commonly compared to the games Werewolves and 
+			Mafia, with a team of "Good" characters competing against a team of "Bad" or "Spy" characters. The 
+			Spy characters know their fellow Spy characters, whereas the Good characters only know their own 
+			roles. The game consists of up to five rounds, with each round giving one point to either the Good or Spy 
+			team. The first team to get 3 points wins.</p><p>
+			At the end of each round, a set of nominated players goes on a mission that requires 
+			cooperation from everyone on the mission. A Good character will always cooperate, whereas a Spy 
+			character has the option to sabotage the mission. If everyone on the mission team cooperates, then the 
+			Good team gets a point. If any Spy character on the mission team sabotages it, then the Spy team gets 
+			a point, and the Good team knows at least one team member was a Spy (but not which). </p><p>
+			To choose the mission team, players go in a circle proposing teams of n players. If the majority 
+			of the players approve of the team, then that team goes on the mission. Otherwise, the next player 
+			proposes a team, and the process is repeated. If everyone's nomination gets rejected, then the Bad 
+			team automatically wins. The size of the mission team, n, changes for each round. </p><p>
+			In addition to the standard "Good" and "Spy" roles, there exists optional roles which add or 
+			obscure knowledge in various ways: 
+			<ul style="text-align: left">
+				<li> A Good character, "Merlin", that knows who all the Spies are. However, if at any point the Spies know who Merlin is, the Spies instantly win. </li>
+				<li> A Good character, "Percival", that knows Merlin and one Spy, but cannot distinguish between them.</li> 
+				<li> A Spy character, "Mordred", that is unknown to Merlin. </li>
+				<li> A Spy character, "Oberon", that is unknown to other Spies, and does not know the other Spies. </li>
+				<li> A pair of characters, the "Lancelots", whose allegiance may switch at random moments in the game.</li>
 			</ul>
+			</p>
 		</div>
-		<div id="fullpage">
-			<div id="intro" class="section"><div class="content">
-					<h1>Introduction</h1>	
-					<p>
-					Welcome to our Multi-Agent Systems' Final Paper in the form of a (at the moment very ugly) website.
-					</p>
-					<p>
-					We decided to devote our project to the analysis of the popular-amongst-its-players game of 
-					<a href="https://en.wikipedia.org/wiki/The_Resistance_%28game%29">"The Resistance"</a>.
-					</p>
-					<p>
-					On the next pages we will first explain the basic game + extentions, give our analysis and present you a piece of code that lets you create your own Kripke models.<br>
-					The about page gives you some information about ourselves, meant for the stalkers among you.
-					</p><p>
-					Navigation can be done via the header-menu or the arrow keys. Some pages consist of several slides, indicated by the white arrows on the sides.
-					</p>
-				</div>
-			</div>
+	</div>
 
-			<div id="resistance" class="section"><div class="content">
-					<h1>The Resistance</h1>	
-					<h2>Game Description</h2>
-					<p>
-					The Resistance is a social deduction game, commonly compared to the games Werewolves and 
-					Mafia, with a team of "Good" characters competing against a team of "Bad" or "Spy" characters. The 
-					Spy characters know their fellow Spy characters, whereas the Good characters only know their own 
-					roles. The game consists of up to five rounds, with each round giving one point to either the Good or Spy 
-					team. The first team to get 3 points wins.</p><p>
-					At the end of each round, a set of nominated players goes on a mission that requires 
-					cooperation from everyone on the mission. A Good character will always cooperate, whereas a Spy 
-					character has the option to sabotage the mission. If everyone on the mission team cooperates, then the 
-					Good team gets a point. If any Spy character on the mission team sabotages it, then the Spy team gets 
-					a point, and the Good team knows at least one team member was a Spy (but not which). </p><p>
-					To choose the mission team, players go in a circle proposing teams of n players. If the majority 
-					of the players approve of the team, then that team goes on the mission. Otherwise, the next player 
-					proposes a team, and the process is repeated. If everyone's nomination gets rejected, then the Bad 
-					team automatically wins. The size of the mission team, n, changes for each round. </p><p>
-					In addition to the standard "Good" and "Spy" roles, there exists optional roles which add or 
-					obscure knowledge in various ways: 
-					<ul style="text-align: left">
-						<li> A Good character, "Merlin", that knows who all the Spies are. However, if at any point the Spies know who Merlin is, the Spies instantly win. </li>
-						<li> A Good character, "Percival", that knows Merlin and one Spy, but cannot distinguish between them.</li> 
-						<li> A Spy character, "Mordred", that is unknown to Merlin. </li>
-						<li> A Spy character, "Oberon", that is unknown to other Spies, and does not know the other Spies. </li>
-						<li> A pair of characters, the "Lancelots", whose allegiance may switch at random moments in the game.</li>
-					</ul>
-					</p>
-				</div>
-			</div>
+	<div id="analysis" class="section"><div class="content">
+			<h1>Analysis</h1>	
+			<h2>Simple game</h2>	
+			<p>
+			Let us first look at the simplest version of the game. In this version, there are two Spies and three Good players, who will go on five missions. 
+			Good Players will always succeed a mission, and Spies always have to fail if they're on a mission. 
+			Although this might not be the most interesting way to play the game, 
+			it is a little bit easier to analyze. We could use this analysis as a basis for more elaborate versions of the game.
+			Initially, the Kripke model will look like this:
+			</p><p>
+			No player can distinguish between the worlds where they are not Spies themselves. 
+			From a world where a player is a Spy, that world is also the only reachable world, since the player then knows the actual alignment of all the players.
+			The names of the worlds in this model correspond to the players that are Spies. 
+			For instance, in world (1, 2), player 1 and player 2 are Spies. 
+			Now let's assume that propositional atom a stands for "player 1 is a Spy", b stands for "player 2 is a Spy", etcetera. 
+			Then we can also say that in world (1, 2), a and b are both true, and therefore (a^b) holds.
+			</p><p>
+			In this version of the game, there are three distinct possibilities for the first mission: 
+			a mission with one Spy, a mission with two Spies and a mission without any spies. 
+			Let's look at all of these different possibilities. 
+			If two Spies go on the first mission, they will both fail the mission. 
+			In this case, everybody knows that the two Spies were on this mission. Let's assume that those Spies were player 1 and 2. The Kripke model will look like this afterwards:
 
-			<div id="analysis" class="section"><div class="content">
-					<h1>Analysis</h1>	
-					<div class="slide">
-						<h2>Simple game</h2>	
-						<p>
-						Let us first look at the simplest version of the game. In this version, there are two Spies and three Good players, who will go on five missions. 
-						Good Players will always succeed a mission, and Spies always have to fail if they're on a mission. 
-						Although this might not be the most interesting way to play the game, 
-						it is a little bit easier to analyze. We could use this analysis as a basis for more elaborate versions of the game.
-						Initially, the Kripke model will look like this:
-						</p><p>
-						No player can distinguish between the worlds where they are not Spies themselves. 
-						From a world where a player is a Spy, that world is also the only reachable world, since the player then knows the actual alignment of all the players.
-						The names of the worlds in this model correspond to the players that are Spies. 
-						For instance, in world (1, 2), player 1 and player 2 are Spies. 
-						Now let's assume that propositional atom a stands for "player 1 is a Spy", b stands for "player 2 is a Spy", etcetera. 
-						Then we can also say that in world (1, 2), a and b are both true, and therefore (a^b) holds.
-						</p><p>
-						In this version of the game, there are three distinct possibilities for the first mission: 
-						a mission with one Spy, a mission with two Spies and a mission without any spies. 
-						Let's look at all of these different possibilities. 
-						If two Spies go on the first mission, they will both fail the mission. 
-						In this case, everybody knows that the two Spies were on this mission. Let's assume that those Spies were player 1 and 2. The Kripke model will look like this afterwards:
-						
-						
-						As you can see, only one possible world is left. This world is also the real world, where 1 and 2 are Spies. Since it is the only possible reachable world for all players, it is also common knowledge that 1 and 2 are Spies. In this case, the Good players have already won. They can just reject every mission with one of the Spies on it.
-Let us now look at one of the other cases, which is a little bit more interesting. If there are two Good players on the first mission, the mission succeeds. Let's say that player 3 and 4 went on this mission. Since there are no fails, every player now knows that players 3 and 4 are not Spies and that they are, in fact, Good. Therefore, the worlds where one of them is a Spy aren't possible for any of the players anymore. The Kripke model now looks like this:
-</p><p>
-In this case, every player knows that between players 1, 2 and 5 there are two Spies. Player 5 now knows the true world. Since he knows he isn't a Spy himself, and he knows that 3 and 4 are not Spies, he can now deduce that player 1 and 2 are Spies. You can also see this in the Kripke model. World (1,2) is the only reachable world for player 5. Therefore, M<sub>1,2</sub> &#8872; K<sub>5</sub>(a&and;b). If 5 is not a Spy, e is not true. This is only the case in world (1, 2). In this world, (a&and;b) also holds. Thus, M &#8872; &not;e &rarr; (a&and;b). It is even the case that M &#8872; &not;e &rarr; K<sub>5</sub>(a&and;b). Intuitively, this also seems logical. Players now know that if player 5 is a Good guy, 1 and 2 are Spies, and 5 also knows this. The same can be said about 1 and 2.
-With two good players on the first mission, the Good Players can also always win. They can just put one of the three players that weren't on the first mission on the next missions to discern who the Spies are in at most two missions (which would result in at most two fails). If one of those missions fails, the players know that the player that wasn't player 3 or 4 is a Spy. If it doesn't, he must be Good. Let us look what happens with the knowledge when 3, 4 and 2 go on the second mission. Since 2 is a Spy, this mission will fail. Every world where one of the Spies isn't player 3, 4 and 2 is not reachable for any of the players after this mission. Since the worlds where player 3 or 4 were Spies are already gone, only worlds where player 2 is a Spy will remain. This results in the following Kripke model:
-</p><p>
-In all of the remaining worlds, b is true. Therefore, it is common knowledge that 2 is a Spy.
-On the next mission, the same tactic can be used to see what the alignment of player 1 or 5 is. This automatically reveals the alignment of the last unknown player. Everybody now knows who the Spies are and only one world will be left. The Good players can now leave the Spies out of the last mission, which will result in a victory for the Good team.
-There is one option left for the first mission, which is probably the most interesting one. If there is one Spy on the mission, the mission will fail, but players that were not on that mission will not know which of the two players was a Spy. Let us look at the case where 1 and 3 go on the first mission. After this mission, every world where 1 and 3 both aren't Spies and the world where they are both Spies won't be reachable anymore, and the Kripke model will look like this:
-</p><p>
-As you can see, in all worlds that are reachable for player 3 where 3 is not a Spy himself, 1 is a Spy. We can therefore conclude that M &#8872; &not;c &rarr; K<sub>3</sub>a. The same can be said about 1. So, if player 1 was a Good player, he would now know 3 is a Spy.
-Since every player knows that 1 and 3 can't both be Spies, they know there must be at least one Spy amongst the remaining players. You can also see this in the Kripke model: in every world that is reachable for at least one agent, b, d or e is true. Therefore, we can say that M &#8872; (b&or;d&or;e). We assume that every player proposes and votes on missions as if they were a Good player, so it wouldn't make sense for any of the players to propose players 2, 4 and 5 together for the next mission. They already know there is one Spy amongst those players, so it will never gain them new information. Putting both 1 and 3 on the second mission doesn't make much sense either. It is already known that one of them is a Spy, so the mission will definitely fail. This will result in the second point for the Spies, but it still won't be possible to know if 1 or 3 is a Spy. Therefore, the Good players have a very small chance of winning if they do this. If we rule out the previous two teams out for mission two, three possibilities remain. If 3, 4 and 5 go on the second mission, the mission will succeed. This will mean that every world where 3, 4 or 5 was a Spy will not be possible for the players anymore. The only remaining world, then, is the one where 1 and 2 are Spies, so it becomes common knowledge that they are. The Good players have now won.
-The second possibility is that the second mission contains both of the Spies. If, for example, 1, 2 and 4 are put on a mission, the mission will show two fails. This will reveal that every player that wasn't on that mission can never be a Spy, so every world where they are will not be possible anymore. Since 3 wasn't on that mission and every world contained either 1 or 3 after the first mission, everybody can now conclude that player 3 is a Spy. This is also visible in the resulting Kripke model:
-</p><p>
-In all of the remaining worlds, a is true. Thus, M &#8872; a. This has now become common knowledge. Furthermore, from the model it follows that M &#8872; &not;d &rarr;  K<sub>4</sub>(a&and;b). In the true world, (1, 2), the Spies also know this, so, as you can see in the Kripke model, M<sub>12</sub> &#8872; K<sub>1</sub>(K<sub>4</sub>(a&and;b)) &and; K<sub>2</sub>(K<sub>4</sub>(a&and;b)). We can even conclude from the Kripke model that M &#8872; (&not;a &rarr; K<sub>1</sub>(K<sub>4</sub>(a&and;b))) &and; (&not;b &rarr; K<sub>2</sub>(K<sub>4</sub>(a&and;b))). Every player also knows this.
-Now, for the third mission it really depends who can propose a team. If player 1 proposes a team, it will never be accepted, since it's known he is a Spy. If player 2 can propose a team, it would probably be the most logical to put himself and player 3 or 5 on a mission. Let us assume player 2 chooses player 3 to go with him. We already concluded that player 4 knows that player 2 is a Spy, so he will reject this mission. Now, for players 3 and 5, it can be a bit complicated. You could say that, since they know the both of them are good guys, it would be in their best interest to only accept a team consisting of them both. This would, however, give them no new information at all. This would only postpone the difficult decision a mission. Therefore, it might be the most logical choice for them to accept 2's proposal. In that case, the mission will fail, and the Spies will win.
-Now suppose that player 4 can propose a team. If this is the case, 4 will propose a team consisting of himself and player 3 or 5. We assume he chose 4 and 5. For 3 and 5, the reasoning we had in the case of the team with 2 and 3 still holds. They have no reason to reject this mission, so they can accept it. 4 will (naturally) also accept this team. The mission will succeed, so it will be known that 4 is a Good player. Since it was already known that 3 and 5 were Good, every player can now conclude that 1 and 2 are Spies. This will result in a victory for team Good.
-If 3 or 5 can propose a team for the third mission, it basically comes down to chance. It would probably be best for them to propose a team consisting of themselves and player 2 or 4. Since they've got no way to distinguish between player 2 and 4, there is no reason to choose one over the other. We already saw the results for both of these teams, so they've basically got a 50% chance of winning. If this were a real game, players 3 and 5 would probably choose what to do based on social interaction.
-Let us get back to the second mission. We still have to look at the case where it contains one Spy. This can be either 1 or 2. It would not be illogical to put 1, 4 and 5 on the second mission. In this case, the mission will fail. Therefore, all the worlds where one of them is not a Spy won't be possible anymore, and all the worlds with a combination of two of them are gone as well. This results in the following Kripke model:
-</p><p>
-As you can see, only three possible worlds remain. 4 and 5 can't distinguish between two of those. It is also interesting to see that 3 now knows the true state of the world. From (1, 2), 3 can not reach other worlds. Therefore, M<sub>12</sub> &#8872; K<sub>3</sub>(a&and;b). Since (1, 2) is also the remaining world where 3 isn't a Spy, we can also conclude that M &#8872; &not;c &rarr; K<sub>3</sub>(a&and;b). Every player also knows this. It also becomes apparent that M &#8872; K<sub>4</sub>((a&and;b)&or;(c&and;e)) and M &#8872; K<sub>5</sub>((a&and;b)&or;(c&and;d)).
-Now, for the third mission, it once again depends on who will propose the team. If player 1 or 2 proposes a team, it would be best for them to propose a team where they are on together. Player 3 will reject this, but for players 4 and 5, there's no real reason to reject this. The chances that this mission will succeed are just 50% for them. Only accepting missions where they are on themselves won't change this probability. Once again, it just comes down to a game of chance. If player 3 can propose a team, he will propose 3 and 5 or 3 and 4. 1 and 2 will always reject this mission. If they were Good, this would be a logical action, since then they would know that player 3 is a Spy. If they weren't Good, as is the case, it would be a logical action as well, because accepting that mission will make them lose the game. For players 4 and 5 it's once again just based on chance, since the same reasoning as before holds. 
-The last possible option for mission two is that the team that goes on a mission consists of 2 and two other players. If we look at the case where 2, 3 and 4 go on a mission, we get the following Kripke model:
-</p><p>
-This model looks quite similar to the model we saw in the previous case. The big difference is that, in this model, there is no Good player that knows the true state of the world. All of them have two worlds between which they can't see the difference. When proposing teams for the third mission, Good players now always have a 50% chance of choosing the right team. We can conclude that this is the worst scenario for them so far.
-It is interesting to see that, when there is one Spy on the first mission, it often becomes a game of chance for the Good players. Real games would probably be decided based on social interaction in those cases, or on voting behavior, which can especially give quite a lot away if players aren’t completely rational agents. It is also worth noting that even when you limit the possibilities of the Spies by making them fail all missions, they still have a decent chance of winning the game. However, this chance does increase if they have a choice, which is what we’ll be looking at next.
-					</div>
-				</div>
-				<div class="slide">
-				</div>
-			</div></div>
 
-			<div id="demo" class="section">
-
-				<div class="slide"><div class="content">
-						<h1>Demo</h1>	
-						Psssht, look to the right ;)
-					</div>
-				</div>
-				<div class="slide"><div class="content">
-						<canvas id="my_canvas" width="1200px" height="900"> </canvas>
-						<br>
-						<button onClick="my_focus('1')">Focus P1</button>
-						<button onClick="my_focus('2')">Focus P2</button>
-						<button onClick="my_focus('3')">Focus P3</button>
-						<button onClick="my_focus('4')">Focus P4</button>
-						<button onClick="my_focus('5')">Focus P5</button>
-						<button onClick="colorize()">Colorize</button>
-						<button onClick="init()">ReInit</button>
-
-					</div>
-				</div>
-			</div>
-
-			<div id="about" class="section"><div class="content">
-					<h2>This page is all about us :) </h2>
-				</div>
-			</div>
-
+			As you can see, only one possible world is left. This world is also the real world, where 1 and 2 are Spies. Since it is the only possible reachable world for all players, it is also common knowledge that 1 and 2 are Spies. In this case, the Good players have already won. They can just reject every mission with one of the Spies on it.
+			Let us now look at one of the other cases, which is a little bit more interesting. If there are two Good players on the first mission, the mission succeeds. Let's say that player 3 and 4 went on this mission. Since there are no fails, every player now knows that players 3 and 4 are not Spies and that they are, in fact, Good. Therefore, the worlds where one of them is a Spy aren't possible for any of the players anymore. The Kripke model now looks like this:
+			</p><p>
+			In this case, every player knows that between players 1, 2 and 5 there are two Spies. Player 5 now knows the true world. Since he knows he isn't a Spy himself, and he knows that 3 and 4 are not Spies, he can now deduce that player 1 and 2 are Spies. You can also see this in the Kripke model. World (1,2) is the only reachable world for player 5. Therefore, M<sub>1,2</sub> &#8872; K<sub>5</sub>(a&and;b). If 5 is not a Spy, e is not true. This is only the case in world (1, 2). In this world, (a&and;b) also holds. Thus, M &#8872; &not;e &rarr; (a&and;b). It is even the case that M &#8872; &not;e &rarr; K<sub>5</sub>(a&and;b). Intuitively, this also seems logical. Players now know that if player 5 is a Good guy, 1 and 2 are Spies, and 5 also knows this. The same can be said about 1 and 2.
+			With two good players on the first mission, the Good Players can also always win. They can just put one of the three players that weren't on the first mission on the next missions to discern who the Spies are in at most two missions (which would result in at most two fails). If one of those missions fails, the players know that the player that wasn't player 3 or 4 is a Spy. If it doesn't, he must be Good. Let us look what happens with the knowledge when 3, 4 and 2 go on the second mission. Since 2 is a Spy, this mission will fail. Every world where one of the Spies isn't player 3, 4 and 2 is not reachable for any of the players after this mission. Since the worlds where player 3 or 4 were Spies are already gone, only worlds where player 2 is a Spy will remain. This results in the following Kripke model:
+			</p><p>
+			In all of the remaining worlds, b is true. Therefore, it is common knowledge that 2 is a Spy.
+			On the next mission, the same tactic can be used to see what the alignment of player 1 or 5 is. This automatically reveals the alignment of the last unknown player. Everybody now knows who the Spies are and only one world will be left. The Good players can now leave the Spies out of the last mission, which will result in a victory for the Good team.
+			There is one option left for the first mission, which is probably the most interesting one. If there is one Spy on the mission, the mission will fail, but players that were not on that mission will not know which of the two players was a Spy. Let us look at the case where 1 and 3 go on the first mission. After this mission, every world where 1 and 3 both aren't Spies and the world where they are both Spies won't be reachable anymore, and the Kripke model will look like this:
+			</p><p>
+			As you can see, in all worlds that are reachable for player 3 where 3 is not a Spy himself, 1 is a Spy. We can therefore conclude that M &#8872; &not;c &rarr; K<sub>3</sub>a. The same can be said about 1. So, if player 1 was a Good player, he would now know 3 is a Spy.
+			Since every player knows that 1 and 3 can't both be Spies, they know there must be at least one Spy amongst the remaining players. You can also see this in the Kripke model: in every world that is reachable for at least one agent, b, d or e is true. Therefore, we can say that M &#8872; (b&or;d&or;e). We assume that every player proposes and votes on missions as if they were a Good player, so it wouldn't make sense for any of the players to propose players 2, 4 and 5 together for the next mission. They already know there is one Spy amongst those players, so it will never gain them new information. Putting both 1 and 3 on the second mission doesn't make much sense either. It is already known that one of them is a Spy, so the mission will definitely fail. This will result in the second point for the Spies, but it still won't be possible to know if 1 or 3 is a Spy. Therefore, the Good players have a very small chance of winning if they do this. If we rule out the previous two teams out for mission two, three possibilities remain. If 3, 4 and 5 go on the second mission, the mission will succeed. This will mean that every world where 3, 4 or 5 was a Spy will not be possible for the players anymore. The only remaining world, then, is the one where 1 and 2 are Spies, so it becomes common knowledge that they are. The Good players have now won.
+			The second possibility is that the second mission contains both of the Spies. If, for example, 1, 2 and 4 are put on a mission, the mission will show two fails. This will reveal that every player that wasn't on that mission can never be a Spy, so every world where they are will not be possible anymore. Since 3 wasn't on that mission and every world contained either 1 or 3 after the first mission, everybody can now conclude that player 3 is a Spy. This is also visible in the resulting Kripke model:
+			</p><p>
+			In all of the remaining worlds, a is true. Thus, M &#8872; a. This has now become common knowledge. Furthermore, from the model it follows that M &#8872; &not;d &rarr;  K<sub>4</sub>(a&and;b). In the true world, (1, 2), the Spies also know this, so, as you can see in the Kripke model, M<sub>12</sub> &#8872; K<sub>1</sub>(K<sub>4</sub>(a&and;b)) &and; K<sub>2</sub>(K<sub>4</sub>(a&and;b)). We can even conclude from the Kripke model that M &#8872; (&not;a &rarr; K<sub>1</sub>(K<sub>4</sub>(a&and;b))) &and; (&not;b &rarr; K<sub>2</sub>(K<sub>4</sub>(a&and;b))). Every player also knows this.
+			Now, for the third mission it really depends who can propose a team. If player 1 proposes a team, it will never be accepted, since it's known he is a Spy. If player 2 can propose a team, it would probably be the most logical to put himself and player 3 or 5 on a mission. Let us assume player 2 chooses player 3 to go with him. We already concluded that player 4 knows that player 2 is a Spy, so he will reject this mission. Now, for players 3 and 5, it can be a bit complicated. You could say that, since they know the both of them are good guys, it would be in their best interest to only accept a team consisting of them both. This would, however, give them no new information at all. This would only postpone the difficult decision a mission. Therefore, it might be the most logical choice for them to accept 2's proposal. In that case, the mission will fail, and the Spies will win.
+			Now suppose that player 4 can propose a team. If this is the case, 4 will propose a team consisting of himself and player 3 or 5. We assume he chose 4 and 5. For 3 and 5, the reasoning we had in the case of the team with 2 and 3 still holds. They have no reason to reject this mission, so they can accept it. 4 will (naturally) also accept this team. The mission will succeed, so it will be known that 4 is a Good player. Since it was already known that 3 and 5 were Good, every player can now conclude that 1 and 2 are Spies. This will result in a victory for team Good.
+			If 3 or 5 can propose a team for the third mission, it basically comes down to chance. It would probably be best for them to propose a team consisting of themselves and player 2 or 4. Since they've got no way to distinguish between player 2 and 4, there is no reason to choose one over the other. We already saw the results for both of these teams, so they've basically got a 50% chance of winning. If this were a real game, players 3 and 5 would probably choose what to do based on social interaction.
+			Let us get back to the second mission. We still have to look at the case where it contains one Spy. This can be either 1 or 2. It would not be illogical to put 1, 4 and 5 on the second mission. In this case, the mission will fail. Therefore, all the worlds where one of them is not a Spy won't be possible anymore, and all the worlds with a combination of two of them are gone as well. This results in the following Kripke model:
+			</p><p>
+			As you can see, only three possible worlds remain. 4 and 5 can't distinguish between two of those. It is also interesting to see that 3 now knows the true state of the world. From (1, 2), 3 can not reach other worlds. Therefore, M<sub>12</sub> &#8872; K<sub>3</sub>(a&and;b). Since (1, 2) is also the remaining world where 3 isn't a Spy, we can also conclude that M &#8872; &not;c &rarr; K<sub>3</sub>(a&and;b). Every player also knows this. It also becomes apparent that M &#8872; K<sub>4</sub>((a&and;b)&or;(c&and;e)) and M &#8872; K<sub>5</sub>((a&and;b)&or;(c&and;d)).
+			Now, for the third mission, it once again depends on who will propose the team. If player 1 or 2 proposes a team, it would be best for them to propose a team where they are on together. Player 3 will reject this, but for players 4 and 5, there's no real reason to reject this. The chances that this mission will succeed are just 50% for them. Only accepting missions where they are on themselves won't change this probability. Once again, it just comes down to a game of chance. If player 3 can propose a team, he will propose 3 and 5 or 3 and 4. 1 and 2 will always reject this mission. If they were Good, this would be a logical action, since then they would know that player 3 is a Spy. If they weren't Good, as is the case, it would be a logical action as well, because accepting that mission will make them lose the game. For players 4 and 5 it's once again just based on chance, since the same reasoning as before holds. 
+			The last possible option for mission two is that the team that goes on a mission consists of 2 and two other players. If we look at the case where 2, 3 and 4 go on a mission, we get the following Kripke model:
+			</p><p>
+			This model looks quite similar to the model we saw in the previous case. The big difference is that, in this model, there is no Good player that knows the true state of the world. All of them have two worlds between which they can't see the difference. When proposing teams for the third mission, Good players now always have a 50% chance of choosing the right team. We can conclude that this is the worst scenario for them so far.
+			It is interesting to see that, when there is one Spy on the first mission, it often becomes a game of chance for the Good players. Real games would probably be decided based on social interaction in those cases, or on voting behavior, which can especially give quite a lot away if players aren't completely rational agents. It is also worth noting that even when you limit the possibilities of the Spies by making them fail all missions, they still have a decent chance of winning the game. However, this chance does increase if they have a choice, which is what we'll be looking at next.
+			</p>
 		</div>
-		<script>
+	</div>
+
+	<div id="demo" class="section">
+
+		<div class="slide"><div class="content">
+				<h1>Demo</h1>	
+				Psssht, look to the right ;)
+			</div>
+		</div>
+		<div class="slide"><div class="content">
+				<canvas id="my_canvas" width="1200px" height="900"> </canvas>
+				<br>
+				<button onClick="my_focus('1')">Focus P1</button>
+				<button onClick="my_focus('2')">Focus P2</button>
+				<button onClick="my_focus('3')">Focus P3</button>
+				<button onClick="my_focus('4')">Focus P4</button>
+				<button onClick="my_focus('5')">Focus P5</button>
+				<button onClick="colorize()">Colorize</button>
+				<button onClick="init()">ReInit</button>
+
+			</div>
+		</div>
+	</div>
+
+	<div id="about" class="section"><div class="content">
+			<h2>This page is all about us :) </h2>
+		</div>
+	</div>
+
+</div>
+<script>
 $(document).ready(function() {
-	$('#fullpage').fullpage({ 
-		anchors: ['introAnchor', 'resistanceAnchor', 'analysisAnchor', 'demoAnchor', 'aboutAnchor', 'lastpageAnchor'],
-		sectionsColor: ['#C63D0F', '#1BBC9B','#C63D0F', '#1BBC9B','#C63D0F', '#1BBC9B'],
-		menu: '#myMenu',
-		slidesNavigation: true,
-		scrollOverflow: true,
-	});
+		$('#fullpage').fullpage({ 
+anchors: ['introAnchor', 'resistanceAnchor', 'analysisAnchor', 'demoAnchor', 'aboutAnchor', 'lastpageAnchor'],
+sectionsColor: ['#C63D0F', '#1BBC9B','#C63D0F', '#1BBC9B','#C63D0F', '#1BBC9B'],
+menu: '#myMenu',
+slidesNavigation: true,
+scrollOverflow: true,
 });
-		</script>
-		<script>
+		});
+</script>
+<script>
 // make a new graph
 var graph = new Springy.Graph();
 
@@ -192,28 +189,28 @@ function addS5Edges(nodes, label, color) {
 
 function colorize() {
 	graph.edges.forEach(function (edge) {
-		if (edge.data.label == '1') {
+			if (edge.data.label == '1') {
 			edge.data.color = '#FF0000';
-		} else if (edge.data.label == '2') {
+			} else if (edge.data.label == '2') {
 			edge.data.color = '#0000FF';
-		} else if (edge.data.label == '3') {
+			} else if (edge.data.label == '3') {
 			edge.data.color = '#00FF00';
-		} else if (edge.data.label == '4') {
+			} else if (edge.data.label == '4') {
 			edge.data.color = '#FF6600';
-		} else if (edge.data.label == '5') {
+			} else if (edge.data.label == '5') {
 			edge.data.color = '#FF00FF';
-		}
-	});
+			}
+			});
 	graph.notify();
 }
 
 function my_focus(label) {
 	colorize();
 	graph.edges.forEach(function (edge) {
-		if (edge.data.label != label) {
+			if (edge.data.label != label) {
 			edge.data.color = "#DDDDDD";
-		}
-	});
+			}
+			});
 	graph.notify()
 }
 
@@ -225,8 +222,8 @@ setTimeout(function() {addS5Edges([a,b,c,e,f,h],'5', '#FF00FF')}, 10000);
 
 function init() {
 	graph.nodes.forEach(function (node) {
-		graph.detachNode(node);
-	});
+			graph.detachNode(node);
+			});
 	addS5Edges([e,f,g,h,i,j],'1', '#FF0000')   
 		addS5Edges([b,c,d,h,i,j],'2', '#0000FF')  
 		addS5Edges([a,c,d,f,g,j],'3', '#00FF00') 
@@ -235,6 +232,6 @@ function init() {
 }
 
 $('#my_canvas').springy({ graph: graph });
-		</script>
-	</body>
+</script>
+</body>
 </html>
