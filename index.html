@@ -72,8 +72,33 @@
 
 			<div id="analysis" class="section"><div class="content">
 					<h1>Analysis</h1>	
-				</div>
-			</div>
+					<div class="slide"><div class="content">
+					<h2>Simple game</h2>	
+							<p>
+							Let us first look at the simplest version of the game. In this version, there are two Spies and three Good players, who will go on five missions. 
+							Good Players will always succeed a mission, and Spies always have to fail if they're on a mission. 
+							Although this might not be the most interesting way to play the game, 
+							it is a little bit easier to analyze. We could use this analysis as a basis for more elaborate versions of the game.
+							Initially, the Kripke model will look like this:
+							</p><p>
+							No player can distinguish between the worlds where they are not Spies themselves. 
+							From a world where a player is a Spy, that world is also the only reachable world, since the player then knows the actual alignment of all the players.
+							The names of the worlds in this model correspond to the players that are Spies. 
+							For instance, in world (1, 2), player 1 and player 2 are Spies. 
+							Now let's assume that propositional atom a stands for "player 1 is a Spy", b stands for "player 2 is a Spy", etcetera. 
+							Then we can also say that in world (1, 2), a and b are both true, and therefore (a^b) holds.
+							</p><p>
+In this version of the game, there are three distinct possibilities for the first mission: 
+a mission with one Spy, a mission with two Spies and a mission without any spies. 
+Let’s look at all of these different possibilities. 
+If two Spies go on the first mission, they will both fail the mission. 
+In this case, everybody knows that the two Spies were on this mission. Let’s assume that those Spies were player 1 and 2. The Kripke model will look like this afterwards:
+&not; &and; &or; &rarr;
+						</div>
+					</div>
+					<div class="slide"><div class="content">
+					</div>
+				</div></div>
 
 			<div id="demo" class="section">
 
