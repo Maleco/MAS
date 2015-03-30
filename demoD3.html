@@ -34,7 +34,7 @@ var width = 900,
 var color = d3.scale.category20();
 
 var force = d3.layout.force()
-    .charge(-10000)
+    .charge(-5000)
     .linkDistance(150)
     .size([width, height]);
 
@@ -85,26 +85,30 @@ function setData(nodes, links) {
   });
 }
 
-var worlds = initWorlds(2,3);
-var players = {};
-for (var i = 0; i < worlds.length; i++) {
-  var world = worlds[i];
-  (players[world[0]] = players[world[0]] || []).push(i);
-  (players[world[1]] = players[world[1]] || []).push(i);
-}
+var worlds, players, links;
+function initKripke(spies, resistance) {
+  worlds = initWorlds(spies,resistance);
+  players = {};
+  for (var i = 0; i < worlds.length; i++) {
+    var world = worlds[i];
+    (players[world[0]] = players[world[0]] || []).push(i);
+    (players[world[1]] = players[world[1]] || []).push(i);
+  }
 
-var links = [];
-for (var player in players) {
-  var ws = players[player];
-  for (var i = 0; i < ws.length; i++) {
-    for (var j = 0; j < ws.length; j++) {
-       links.push({source: ws[i], target: ws[j], player: i});
+  links = [];
+  for (var player in players) {
+    var ws = players[player];
+    for (var i = 0; i < ws.length; i++) {
+      for (var j = 0; j < ws.length; j++) {
+        links.push({source: ws[i], target: ws[j], player: i});
+      }
     }
   }
+
+  var nodes = worlds.map(function(a){return {name:a};});
+  //nodes[0].reality = true;
+
+  setData(nodes, links);
 }
-
-var nodes = worlds.map(function(a){return {name:a};});
-//nodes[0].reality = true;
-
-setData(nodes, links);
+initKripke(3,2);
 </script>
