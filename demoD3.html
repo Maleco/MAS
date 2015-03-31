@@ -45,7 +45,6 @@ var svg = d3.select("body").append("svg")
     .attr("height", height);
 
 function setData(graph) {
-  console.log(graph);
   force
       .nodes(graph.worlds)
       .links(graph.links)
@@ -92,7 +91,8 @@ function setData(graph) {
 function findWorld(w, graph) {
   var worldNdx = undefined;
   for (var i = 0; i < graph.worlds.length; i++) {
-    if (graph.worlds[i].spies === w || graph.worlds[i].spiesRaw.equals(w)) {
+    var world = graph.worlds[i];
+    if (world === w || world.spies === w) {
       worldNdx = i;
       break;
     }
@@ -102,9 +102,9 @@ function findWorld(w, graph) {
 
 function removeWorld(w, graph) {
   var worldNdx = findWorld(w, graph);
-  if (world === undefined) {
+  if (worldNdx === undefined) {
     console.log('Could not find world '+w);
-    return;
+    return false;
   }
   var world = graph.worlds[worldNdx];
   graph.worlds.splice(worldNdx, 1);
@@ -115,10 +115,43 @@ function removeWorld(w, graph) {
       i--;
     }
   }
+  return true;
 }
 
-function missionResults(missionTeam, numFails, forcedFail, canSeeNumFails) {
-  
+function knownGood(player, graph) {
+  for (var i = 0; i < graph.worlds.length; i++) {
+    var world = graph.worlds[i];
+    if (world.spies.indexOf(player) >= 0 || world.spiesRaw.indexOf(player) >= 0) {
+      console.log(world);
+      if (!removeWorld(world.spies, graph)) {
+        console.log('WTF? '+i);
+        return;
+      }
+      i--;
+    }
+  }
+}
+
+function knownBad(player, graph) {
+  for (var i = 0; i < graph.worlds.length; i++) {
+    var world = graph.worlds[i];
+    if (world.resistance.indexOf(player) >= 0 || world.resistanceRaw.indexOf(player) >= 0) {
+      console.log(world);
+      if (!removeWorld(world.spies, graph)) {
+        console.log('WTF? '+i);
+        return;
+      }
+      i--;
+    }
+  }
+}
+
+function missionResults(missionTeam, numFails, forceFail, canSeeNumFails) {
+  if (numFails == 0 && forceFail) {
+    for (var i = 0; i < missionTeam.length; i++) {
+      knownGood(missionTeam[i], graph);
+    }
+  }
 
   setData(graph);
 }
