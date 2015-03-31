@@ -66,3 +66,31 @@ canvas {
 	color: white;
 }
 
+
+/*************************************
+* D3 stuff
+*************************************/
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+
+svg {
+   -webkit-touch-callout: none;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+
+#colorButtons {
+  display: inline;
+}
+
