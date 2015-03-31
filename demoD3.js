@@ -46,7 +46,7 @@ function initWorlds(numSpies, numResistance) {
 function getSpies(a, numResistance) {
   var numSpies = a.length;
   var spies = new Array(numSpies);
-  spies[0] = a[0];
+  spies[0] = a[0] + 1;
   for (var i = 1; i < numSpies; i++) spies[i] = spies[i-1] + a[i] + 1;
   var resistance = inverse(spies, numResistance);
   var s = spies.map(function(a){return a.toString();}).join("");
@@ -57,7 +57,7 @@ function getSpies(a, numResistance) {
 function inverse(spyNums, numResistance) {
   var out = [];
   var numPlayers = spyNums.length + numResistance;
-  for (var i = 0, j = 0; i < numPlayers; i++) {
+  for (var i = 1, j = 0; i <= numPlayers; i++) {
     if (j >= spyNums.length || spyNums[j] != i) {
       out.push(i);
     } else if (j < spyNums.length && spyNums[j] == i) {

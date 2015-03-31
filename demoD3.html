@@ -21,9 +21,26 @@ svg {
    user-select: none;
 }
 
+#colorButtons {
+  display: inline;
+}
+
 </style>
 <body>
-<!--<script src="http://d3js.org/d3.v3.min.js"></script>-->
+<div id="kripke"></div>
+<button onclick="colorMe();">Reset focus</button>
+<div id="colorButtons"></div>
+<p>
+<form>
+  <input type="text" name="missionTeam" placeholder="Mission team?" /> <br />
+  <input type="number" name="numFails" placeholder="Number of fails?" /> <br />
+  <label><input type="checkbox" name="forceFail" />Force spies to fail?</label> <br />
+  <label><input type="checkbox" name="seeFails" />See number of fails?</label> <br />
+  <!-- this is horrendous... -->
+  <input type="button" onclick="missionResults(missionTeam.value, numFails.value, forceFail.checked, seeFails.checked)" value="Go on a mission!" />
+</form>
+</p>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script src="demoD3.js"></script>
 <script>
@@ -31,7 +48,7 @@ svg {
 var width = 600,
     height = 600;
 
-var color = d3.scale.category20();
+var color = d3.scale.category10();
 
 var force = d3.layout.force()
     .charge(-5000)
@@ -40,11 +57,21 @@ var force = d3.layout.force()
     .gravity(.15)
     .size([width, height]);
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("div")
+  .append("svg")
     .attr("width", width)
     .attr("height", height);
 
+var colorButtons = d3.select("#colorButtons");
+
 function setData(graph) {
+  var butt = colorButtons.selectAll("button")
+      .data(graph.playerList);
+  butt.exit().remove();
+  butt.enter().append("button")
+      .text(function(d){ return "Focus "+d; })
+      .attr("onclick", function(d){ return "colorMe("+d+");"; });
+
   force
       .nodes(graph.worlds)
       .links(graph.links)
@@ -55,7 +82,8 @@ function setData(graph) {
       .data(force.links())
     .enter().append("line")
       .attr("class", "link")
-      .style("stroke-width", function(d) { return d.value; });
+      .style("stroke", function(d){ return color(d.player); })
+      .style("stroke-width", 2);
 
   svg.selectAll(".gnode").remove();
   var gnodes = svg.selectAll(".gnode")
@@ -83,9 +111,21 @@ function setData(graph) {
         .attr("y2", function(d) { return d.target.y; });
 
     gnodes.attr("transform", function(d) {
-       return 'translate(' + [d.x, d.y] + ')';
+       return "translate(" + [d.x, d.y] + ")";
     });
   });
+}
+
+function colorMe(p) {
+  if (p === undefined) {
+    svg.selectAll(".link")
+        .style("stroke", function(d){ return color(d.player); })
+        .style("stroke-width", 2);
+  } else {
+    svg.selectAll(".link")
+        .style("stroke", function(d){ return d.player == p ? color(d.player) : "#eee"; })
+        .style("stroke-width", function(d){ return d.player == p ? 3 : 1; });
+  }
 }
 
 function findWorld(w, graph) {
@@ -103,7 +143,7 @@ function findWorld(w, graph) {
 function removeWorld(w, graph) {
   var worldNdx = findWorld(w, graph);
   if (worldNdx === undefined) {
-    console.log('Could not find world '+w);
+    console.log("Could not find world "+w);
     return false;
   }
   var world = graph.worlds[worldNdx];
@@ -124,7 +164,7 @@ function knownGood(player, graph) {
     if (world.spies.indexOf(player) >= 0 || world.spiesRaw.indexOf(player) >= 0) {
       console.log(world);
       if (!removeWorld(world.spies, graph)) {
-        console.log('WTF? '+i);
+        console.log("WTF? "+i);
         return;
       }
       i--;
@@ -138,7 +178,7 @@ function knownBad(player, graph) {
     if (world.resistance.indexOf(player) >= 0 || world.resistanceRaw.indexOf(player) >= 0) {
       console.log(world);
       if (!removeWorld(world.spies, graph)) {
-        console.log('WTF? '+i);
+        console.log("WTF? "+i);
         return;
       }
       i--;
@@ -146,10 +186,51 @@ function knownBad(player, graph) {
   }
 }
 
-function missionResults(missionTeam, numFails, forceFail, canSeeNumFails) {
-  if (numFails == 0 && forceFail) {
-    for (var i = 0; i < missionTeam.length; i++) {
-      knownGood(missionTeam[i], graph);
+// Find the length of the longest common subsequence of a and b. Assumes a and b are in sorted order.
+function lenLCS(a, b) {
+   var out = 0;
+   for (var i = 0, j = 0; i < a.length && j < b.length; ) {
+      if (a[i] == b[j]) {
+         out++;
+         i++;
+         j++;
+      } else if (a[i] < b[j]) {
+         i++;
+      } else {
+         j++;
+      }
+   }
+   console.log(a+" "+b+" "+out);
+   return out;
+}
+
+function filterLenLCS(missionTeam, graph, f) {
+  for (var i = 0; i < graph.worlds.length; i++) {
+    var world = graph.worlds[i];
+    if (!f(lenLCS(world.spies,missionTeam))) {
+      if (!removeWorld(world.spies, graph)) {
+        console.log("WTF? "+i);
+        console.log(world);
+        return;
+      } else {
+        console.log("Removing "+world.spies);
+      }
+      i--;
+    }
+  }
+}
+
+function missionResults(missionTeam, numFails, forceFail, seeFails) {
+  missionTeam = missionTeam.split("").sort().join("");
+  if (numFails == 0) {
+    if (forceFail) {
+      filterLenLCS(missionTeam, graph, function(f) { return f == 0; });
+    }
+  } else {
+    if (seeFails) {
+      filterLenLCS(missionTeam, graph, function(f) { return f == numFails; });
+    } else {
+      filterLenLCS(missionTeam, graph, function(f) { return f != 0; });
     }
   }
 
@@ -158,12 +239,19 @@ function missionResults(missionTeam, numFails, forceFail, canSeeNumFails) {
 
 var graph = {};
 function initKripke(spies, resistance) {
+  graph.playerList = new Array(spies+resistance);
+  for (var i = 0; i < spies+resistance; i++) {
+    graph.playerList[i] = i+1;
+  }
+
   graph.worlds = initWorlds(spies,resistance);
+
   graph.players = {};
   for (var i = 0; i < graph.worlds.length; i++) {
     var world = graph.worlds[i];
     for (var j in world.resistance) {
-      (graph.players[world.resistance[j]] = graph.players[world.resistance[j]] || []).push(world);
+      var player = world.resistance[j];
+      (graph.players[player] = graph.players[player] || []).push(world);
     }
   }
 
@@ -171,8 +259,8 @@ function initKripke(spies, resistance) {
   for (var player in graph.players) {
     var ws = graph.players[player];
     for (var i = 0; i < ws.length; i++) {
-      for (var j = 0; j < ws.length; j++) {
-        graph.links.push({source: ws[i], target: ws[j], player: i});
+      for (var j = i+1; j < ws.length; j++) {
+        graph.links.push({source: ws[i], target: ws[j], player: player});
       }
     }
   }
