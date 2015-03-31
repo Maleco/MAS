@@ -69,7 +69,7 @@
 		</div>
 	</div>
 
-	<div id="analysis" class="section"><div class="content">
+	<div id="analysis" class="section"><div class="slide"><div class="content">
 			<h1>Analysis</h1>	
 			<h2>Simple game</h2>	
 			<p>
@@ -121,7 +121,65 @@
 			It is interesting to see that, when there is one Spy on the first mission, it often becomes a game of chance for the Good players. Real games would probably be decided based on social interaction in those cases, or on voting behavior, which can especially give quite a lot away if players aren't completely rational agents. It is also worth noting that even when you limit the possibilities of the Spies by making them fail all missions, they still have a decent chance of winning the game. However, this chance does increase if they have a choice, which is what we'll be looking at next.
 			</p>
 		</div>
+		</div>
+		<div class="slide"><div class="content">
+			<h1>Failing or succeed the first mission</h1>
+
+
+<p>
+
+For our last analysis, we looked at the simplest version of the game, where Spies had to fail every mission they were on. We're now going to make it a little bit complicated: we're going to give Spies the freedom of choice. This will probably result in more interesting games, and it gives rise to some new possible game-states. Analyzing all new possibilities will take a lot of time, and might not be that interesting. Therefore, we have centered our analysis around a specific question: is it better for Spies to fail or succeed the first mission? If a Spy is on the first mission, it might seem like a good idea to fail the mission. It gives the Spy team a point, which is already one third of a victory, and it puts the Good team on a timer to find out who the Spies are. On the other hand, it does give the Good team a lot of information. They can already rule out quite a lot of possibilities and they are a lot closer to finding out the identity of one of the Spies. So the question is: what is usually the better play for a Spy?
+
+</p>
+
+<p>
+
+<h2>Failing the first mission:</h2>
+For a Spy to fail or succeed the first mission, it naturally has to be the case that there is at least one Spy on this mission so we're not going to look at teams with just Good players. If both of the Spies go on the first mission together, failing it would probably not be the best idea for agents who can't communicate. There is a chance that both of them will fail, which will result in the fact that all players know who the Spies are, resulting in a loss for the Spies. We can assume that, in a game where players can't communicate, it might be best for both Spies to succeed the mission.  <br>
+The most interesting case is probably when there is only one Spy on the first mission. Then, the consideration mentioned before comes into play. For our analysis, we'll just look at the different possibilities and their outcomes.<br>
+Let us first look at the case where the Spy fails the mission. Once again, we assume player 1 and 2 are Spies and that 1 and 3 go on the first mission. If 1 fails this mission, the result will not be exactly the same as our previous analysis. The difference is that the world where 1 and 3 are both Spies is still a possibility for some agents. This is what the Kripke model will look like:<br><br>
+
+Even though the Good players gained a lot of information, they know less than in the previous analysis. It is, however, still the case that M &#8872; &not;c &rarr; K<sub>3</sub>a. To put it into words, 3 now knows that 1 is a Spy, and all other Good players know that 1 or 3 is a Spy.
+For mission two, there are once again three options for the members of the team: two Spies, one Spy or no Spies. In the case where there are no Spies, the mission succeeds. This doesn't, however, give the Good players any new information. It might just be the case that there were Spies on the mission who succeeded it. This is the case for all missions that succeed: they never give out any new information. If the second mission succeeds, the Kripke model stays the same as after the first mission. Now, there are the same three options once again. Players probably wouldn't put player 1 and 3 on this third mission, because they know for sure that there's a Spy between them. It would be possible that there's no Spies on this mission and it succeeds. In that case, the Good players have already almost won: they just have to win one more mission.Therefore, the Spies have to fail the last two missions in order to win. So let's assume that there's at least one Spy on the fourth mission. 2, 4 and 5 are selected for this mission, and it fails. This means that it can't be the case that 1 and 3 are both Spies, so world (1,3) becomes unreachable. As you can already imagine, this gives very little new information to the Good players. In that case, we play the game of chance again for the last mission. The chances of a team solely consisting of Good guys going on the last mission are pretty small. In this chain of events, the Spies have quite a good chance of winning the game.<br>
+Let's revisit mission four. If 1, 2 and 5 go on this mission,  only one outcome would really change things. If there's one fail, there's only one world that becomes unreachable. It's not possible anymore that 3 and 4 are both Spies, but nothing else changes. Then, we're back at our game of chance, although the chances are a little bit better than in the previous case. <br>
+We already saw that a succeeding mission isn't interesting, so the last possibility is that both Spies fail the mission. That leaves us with only two worlds: (1, 2) and (1, 5). 3 and 4 have no way to distinguish between player 2 and 5, so, once again, the last mission is based on chance. However, in this case, the chances are 50/50, so the future looks a lot brighter for  the Good players. It's also interesting to note that M &#8872; a, and everybody also knows this, since it is true in all reachable worlds.<br><br>
+
+Let us go back to the third mission. We looked at the case where it succeeded, but a failed mission is also a possibility. There are quite a few options, and we won't look at all of them. In the case of two Spies who both fail, the Spies are known to the Good players, and the game is over. In all other cases, four possible worlds remain. We'll look at one of these cases. If 2 and 4 go on a mission, the resulting Kripke model is this one:<br><br>
+
+There's only one thing for certain: 5 is not a Spy. Therefore, M &#8872; &not;e. Since this is true in all worlds reachable for all players in any number of steps, this is common knowledge. The fourth mission has to succeed for the Good players to win the game. If the mission succeeds, the players on it have to be Good, since Spies who would succeed this mission are not rational agents. But what do the Good players know? They know 5 isn't a Spy, so he has to be included. There are also some other things that can be said. You can see from the Kripke model that the following holds: M<sub>12</sub> &#8872; K<sub>3</sub>a. 3 now knows that 1 is a Spy. The same can be said about 4 and 2: M <sub>12</sub> &#8872; K<sub>4</sub>b. Everybody also know this, which we can see from the fact that M &#8872; &not;c &rar; K<sub>3</sub>a and M &#8872; &not;d &rar; K<sub>4</sub>b hold. The only player that doesn't know any allegiance except for his own is player 5. <br>
+If the Spies can now propose a team, they have to include player 5 to possibly get that third vote they need to approve of the team. For the Good players, it's a 50% chance they only choose Good players at best. Once again, the Spies have quite a decent chance of winning the game.<br><br>
+
+Now let us go way back, to the second mission of this game. We assumed that it succeeded, but what happens when it fails? Basically, the resulting Kripke models will be the same as when the second and third mission succeeded, and the fourth one failed. In that case, the information didn't change in the two succeeding missions, so the second mission was basically postponed. The big difference is that the third mission is, in this case, not necessarily a decisive mission. If there's a Spy on that mission, the mission will definitely fail and the Spies will win. However, if it's just Good players, there's still no consensus about who the last Good player is, so the Spies still have a chance to win. If, for example, 2, 4 and 5 went on the second mission and 4 and 5 go on the third mission, this will be the resulting Kripke model:<br><br>
+
+As you can see, there's still more than one option for players 4 and 5. It must be said that for every team that isn't 4 and 5, there is a decisive victor.<br>
+We went through all possible (interesting) options if Spies fail the first mission. It seemed as if the Spies have quite a decent chance of winning in a lot of them. Let us now look what happens when Spies succeed the first mission.
+</p>
+
+
+<h2>Succeeding the first mission:</h2>
+
+If the first mission succeeds, it doesn't even matter who was on it. It is impossible to gain any information from it, as we already saw previously. You could argue that it is a bad move for a Spy to succeed this mission. It doesn't give the Spies any points and they are put on a disadvantage. However, it can also be said that failing two player missions gives away more information than failing three player missions. Let's see if this is true.<br>
+If 1, 3 and 4 go on the second mission and 1 will fail it, Good players don't gain an awful lot of information. They just know that  there is at least one Spy amongst the members of that team. This will result in the following Kripke model:<br><br>
+
+Only world (2, 5) will "disappear", so very little knowledge is gained. Nobody will know anything useful yet.<br>
+The next mission is a two player mission once again. If there's one fail, there's at least six worlds left, and at most eight. In the best possible scenario for the Good guys, 2 and 5 will go on a mission and the resulting Kripke model will be this one:<br><br>
+
+
+As you can see, it doesn't look too good for the Good guys. Nobody knows anything for certain yet, and there are still a lot of possibilities. The Good players do have to propose a team with just Good players for the fourth mission to have any chance of winning the game. The odds are, however, not in their favour.<br>
+Now let's see what happens when the third mission succeeds. This will give nobody any information, and it will put the Good players on two points. Therefore, Spies will have to fail all of the next mission. If there's one Spy on the fourth one, the mission will fail and at most one world will become unreachable. The Kripke model where 1, 2 and 5 go on the fourth mission, for example, looks like this:<br><br>
+
+It becomes apparent that the Good players don't have a lot of knowledge, so the last mission becomes a guessing game once again. It doesn't really get any better for the Good players in the other cases where there's one fail on the mission. The only way in which it could go better is if there's two Spies and both of them fail. This leaves at most three, and at least two worlds. Even though it's still a guess for the Good players on the last mission, the odds are now much better for them.
+
+<h2>Conclusions</h2>
+As you can probably tell, the chances of the Spies winning the game become much higher when they don't necessarily have to fail a mission. They can deceive the Good players and give them as little information as possible. But did it turn out to be better to fail, or succeed the first mission?  Although it is hard to say for certain, it looks like it's better to succeed the first mission and fail the second one. Failing the second one doesn't give away nearly as much information, and in most of the resulting cases, the Spies have a very good chance of winning. There's also not as much of a chance of Good players definitely knowing that a player is a Spy.<br>
+This does, however, depend on which teams are proposed and accepted. To get a full, statistical overview of which decisions are the best, you need to look at all of the different possibilities for the team proposals as well. The problem is that this generates an awful lot of different possibilities, so it's not in the scope of this project.<br>
+One last thing to note is that a lot of the (final) decisions in the game seem to be based on chance. In real games, however, these will probably be based on social interactions. In a real game, it's a bit harder for the Spies to win because they have to deceive the other players, and they have to keep a straight face and not make mistakes in their voting behavior. For rational agents though, it looks like the odds are in the favor of the Spies.
+
+			
+			</div>
+			</div>
 	</div>
+
 
 	<div id="demo" class="section">
 
