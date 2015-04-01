@@ -21,6 +21,8 @@ body {
 
 #ktable td {
   padding: 0;
+  height: 9px;
+  width: 9px;
 }
 
 #kripke {
@@ -92,9 +94,7 @@ function setData(graph) {
       .attr("onmouseover", function(d){ return "colorMe("+d+");"; })
     .selectAll("td")
       .data(graph.playerList)
-    .enter().insert("td")
-      .style("height", "7px")
-      .style("width", "7px");
+    .enter().insert("td");
 
   ktable.selectAll("tr").selectAll("td")
       .style("background", function(a,b,c) {
