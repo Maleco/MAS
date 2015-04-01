@@ -90,6 +90,10 @@ svg {
    user-select: none;
 }
 
+svg text {
+   pointer-events: none;
+}
+
 #colorButtons {
   display: inline;
 }

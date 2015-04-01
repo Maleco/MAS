@@ -2,9 +2,41 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="style.css" />
+<style>
+body {
+  text-align: center;
+  color: black;
+}
+
+#ktable {
+  position: absolute;
+  top: 1px;
+  right: 0;
+}
+
+#ktable table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+#ktable td {
+  padding: 0;
+}
+
+#kripke {
+  position: relative;
+  margin: 0 auto;
+}
+
+#kripke svg {
+  border: 1px solid black;
+}
+</style>
 </head>
 <body>
-<div id="kripke"></div>
+<div id="kripke">
+<div id="ktable"></div>
+</div>
 <button onclick="colorMe();">Reset focus</button>
 <div id="colorButtons"></div>
 <p>
@@ -22,8 +54,8 @@
 <script src="demoD3.js"></script>
 <script>
 
-var width = 600,
-    height = 600;
+var width = 400,
+    height = 400;
 
 var color = d3.scale.category10();
 
@@ -31,15 +63,20 @@ var force = d3.layout.force()
     .charge(-5000)
     .linkDistance(150)
     .friction(.95)
-    .gravity(.15)
+    .gravity(.18)
     .size([width, height]);
 
-var svg = d3.select("div")
+var svg = d3.select("#kripke")
+    .style("width", width+"px")
   .append("svg")
     .attr("width", width)
     .attr("height", height);
 
 var colorButtons = d3.select("#colorButtons");
+
+var ktable = d3.select("#ktable")
+  .append("table")
+    .attr("onmouseout", "colorMe()");
 
 function setData(graph) {
   var butt = colorButtons.selectAll("button")
@@ -48,6 +85,23 @@ function setData(graph) {
   butt.enter().append("button")
       .text(function(d){ return "Focus "+d; })
       .attr("onclick", function(d){ return "colorMe("+d+");"; });
+
+  ktable.selectAll("tr")
+      .data(graph.playerList)
+    .enter().insert("tr")
+      .attr("onmouseover", function(d){ return "colorMe("+d+");"; })
+    .selectAll("td")
+      .data(graph.playerList)
+    .enter().insert("td")
+      .style("height", "7px")
+      .style("width", "7px");
+
+  ktable.selectAll("tr").selectAll("td")
+      .style("background", function(a,b,c) {
+          var p1 = c+1, p2 = b+1;
+          var possible = spyKnowledge(p1,p2,graph);
+          return possible > 0 ? "red" : possible < 0 ? "green" : "yellow";
+      });
 
   force
       .nodes(graph.worlds)
@@ -68,7 +122,10 @@ function setData(graph) {
   gnodes = gnodes
     .enter().append("g")
       .classed("gnode", true)
-      .call(force.drag);
+      // Don't set node to fixed on mouseover.
+      // This is a hack taken from http://jsfiddle.net/InferOn/5wssqqdw/1/
+      // Not sure what the "proper" way to disable force.drag()'s mouseover is.
+      .call(force.drag().on("drag",function(d){}));
 
   var node = gnodes.insert("circle")
       .attr("class", "node")
@@ -91,6 +148,23 @@ function setData(graph) {
        return "translate(" + [d.x, d.y] + ")";
     });
   });
+}
+
+// Returns -1 if p1 knows p2 is not a spy.
+// Returns 0 if p1 holds it possible that p2 is a spy, but is not sure.
+// Returns 1 if p1 knows p2 is a spy.
+function spyKnowledge(p1, p2, graph) {
+  var worlds = graph.worlds;
+  var count = 0, myWorldCount = 0;
+  for (var i = 0; i < worlds.length; i++) {
+    if (worlds[i].spies.indexOf(p1) == -1) {
+      myWorldCount++;
+      if(worlds[i].spies.indexOf(p2) != -1) {
+        count++;
+      }
+    }
+  }
+  return myWorldCount == 0 ? 1 : count == 0 ? -1 : count < myWorldCount ? 0 : 1;
 }
 
 function colorMe(p) {
@@ -139,8 +213,8 @@ function knownGood(player, graph) {
   for (var i = 0; i < graph.worlds.length; i++) {
     var world = graph.worlds[i];
     if (world.spies.indexOf(player) >= 0 || world.spiesRaw.indexOf(player) >= 0) {
-      console.log(world);
       if (!removeWorld(world.spies, graph)) {
+        console.log(world);
         console.log("WTF? "+i);
         return;
       }
@@ -153,8 +227,8 @@ function knownBad(player, graph) {
   for (var i = 0; i < graph.worlds.length; i++) {
     var world = graph.worlds[i];
     if (world.resistance.indexOf(player) >= 0 || world.resistanceRaw.indexOf(player) >= 0) {
-      console.log(world);
       if (!removeWorld(world.spies, graph)) {
+        console.log(world);
         console.log("WTF? "+i);
         return;
       }
@@ -177,7 +251,6 @@ function lenLCS(a, b) {
          j++;
       }
    }
-   console.log(a+" "+b+" "+out);
    return out;
 }
 
