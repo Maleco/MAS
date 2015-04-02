@@ -12,12 +12,17 @@
 </head>
 <body>
   <div id="k1" class="content"> </div>
+  <div id="k2" class="content"> </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
   <script src="demoD3_2.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script>
-    var v = new Visualization("#k1").initGame(2,3,false,true);
+    var v1 = new Visualization("#k1").initGame(2,3,false,true)
+    var v2 = new Visualization("#k2").initGame(3,4,false,true)
+        .goOnAMission("126",1)
+        .goOnAMission("123",1)
+        .goOnAMission("124",1)
   </script>
   </body>
 </html>

@@ -165,9 +165,9 @@ Visualization.prototype.drawData = function(gameState) {
       .attr("height", this.height/(numPlayers+1))
       .text(function(d, i, j) { return j+1; })
       .style("background", function(a,b,c) {
-        var p1 = c+1, p2 = b+1;
+        var p1 = b+1, p2 = c+1;
         var possible = gameState.spyKnowledge(p1,p2);
-        return possible > 0 ? "red" : possible < 0 ? "green" : "yellow";
+        return possible == 2 ? "#222" : possible > 0 ? "red" : possible < 0 ? "green" : "yellow";
       });
 }
 
@@ -201,13 +201,21 @@ Visualization.prototype.focus = function(p) {
   if (p === undefined) {
     this.svg.selectAll(".link")
         .style("stroke", function(d){ return color(d.player); })
-        .style("stroke-width", 2)
-        .style("stroke-opacity", function(d){ return 0.6; });
+        .style("stroke-width", null)
+        .style("stroke-opacity", null);
+
+    this.svg.selectAll(".node")
+        .style("stroke-width", null)
+        .style("stroke", null);
   } else {
     this.svg.selectAll(".link")
         .style("stroke", function(d){ return d.player == p ? color(d.player) : "#eee"; })
         .style("stroke-width", function(d){ return d.player == p ? 3 : 1; })
         .style("stroke-opacity", function(d){ return d.player == p ? 1 : 0.2; });
+
+    this.svg.selectAll(".node")
+        .style("stroke-width", function(d){ return d.spies.indexOf(p) == -1 ? "3px" : null; })
+        .style("stroke", function(d){ return d.spies.indexOf(p) == -1 ? color(p) : null; });
   }
 }
 
@@ -339,6 +347,7 @@ GameState.prototype.removeWorld = function(w) {
 // Returns -1 if p1 knows p2 is not a spy.
 // Returns 0 if p1 holds it possible that p2 is a spy, but is not sure.
 // Returns 1 if p1 knows p2 is a spy.
+// Returns 2 if p1 is outed as a spy.
 GameState.prototype.spyKnowledge = function(p1, p2) {
   //TODO: Handle case where p1 is a spy.
   var worlds = this.worlds;
@@ -351,7 +360,7 @@ GameState.prototype.spyKnowledge = function(p1, p2) {
       }
     }
   }
-  return myWorldCount == 0 ? 1 : count == 0 ? -1 : count < myWorldCount ? 0 : 1;
+  return myWorldCount == 0 ? 2 : count == 0 ? -1 : count < myWorldCount ? 0 : 1;
 }
 
 
