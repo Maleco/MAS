@@ -26,6 +26,7 @@
         <li data-menuanchor="visualizationAnchor"><a href="#visualizationAnchor">Visualization</a></li>
         <li data-menuanchor="analysisAnchor"><a href="#analysisAnchor">  Analysis</a></li>
         <li data-menuanchor="analysisAnchor2"><a href="#analysisAnchor2">Analysis(2)</a></li>
+        <li data-menuanchor="analysisAnchor2"><a href="#analysisAnchor3">Analysis(Voting)</a></li>
         <li data-menuanchor="aboutAnchor"><a href="#aboutAnchor">     About</a></li>
       </ul>
     </div>
@@ -762,13 +763,52 @@
         </div>
       </div>
       <!-- END ANALYSIS(2) PAGE-->
+      <div id="analysis3" class="section">
+        <div class="content">
+          <h1>Voting behavior of Spies</h1>
+          In our last two analyses, we assumed that Spies always assume the role of a Good player in the voting stage of the game, 
+          unless doing so loses them the game, or they can automatically win the game by not doing so.
+          But how does this actually work? <br>
+          To assume the role of a Good player, the Spies have to know what they should know if they were Good players.
+          In the Kripke model, this is always directly visible: you just have to look at the connections for Spies from the worlds where they are Good.
+          <br>
+          Let's look at an example: suppose that player 1 and 2 are Spies, and that the first mission consists of player 1 and 3.
+          We assume that Spies have to fail a mission, so the mission shows one fail.
+          In this case, player 3 knows that player 1 is a Spy.
+          Since player 1 is a Spy, he also knows he's a Spy.
+          But what would 1 know if he was a Good player? Let us take a look at the Kripke model:<br>
+          In this Kripke model, we can clearly see what player 1 knows.
+          In every world accessible from the worlds where 1 isn't a Spy, 3 is a Spy.
+          We can therefore conclude that M &#8872; &not; a &rarr;  K<sub>1</sub>c.
+          Now let's take a look at the knowledge of a random Good player.
+          From the real world (1, 2), every world that is accessible for player 5 where 1 isn't a Spy has 3 as a Spy.
+          It can therefore also be said that M<sub>12</sub> &#8872; K<sub>5</sub>(&not; a &rarr;  K<sub>1</sub>c).
+          The same can be said about player 4.
+          Player 3 already knows for certain that 1 is a Spy, so there is no use in trying to hide it.
+          Now what does player 1 know about the knowledge of Good players 3 and 4? In every world that is reachable for player 1 from world (1, 2), 
+          all worlds that are reachable for 4 and 5 where 1 isn't a Spy have 3 as a Spy.
+          To say it a little bit shorter, it can be noted that M<sub>12</sub> &#8872;K<sub>1</sub>( K<sub>5</sub>(&not; a &rarr;  
+          K<sub>1</sub>c)) and M<sub>12</sub> &#8872;K<sub>1</sub>( K<sub>4</sub>(&not; a &rarr;  K<sub>1</sub>c)).
+          So player 1 knows that he has to vote as if he knows 3 is a Spy.
+          He shouldn't approve of missions with 3 on it, unless it outright wins him the game, or it directly saves him from a loss.
+          <br>
+          We can use similar reasoning to see how Spies should vote in other situation.
+          If you look at the Kripke model, it's always easy to see.
+          Just looking at the connections from the worlds where players are Good shows how their behavior should be.
+        </div>
+      </div>
 
       <div id="about" class="section"><div class="content">
           <h2>Who are we, and what is this? </h2>
           This webpage is made as a project for the course Multi-Agent Systems (MAS) at the University of Groningen.
           Our goal was to use epistemic logic to analyze a game.
           We chose the game "the Resistance", since a lot of knowledge is involved.<br>
-          We are three Masters students: Michael Lekander, studying Computer Science, Maikel Withagen, studying Artificial Intelligence and Human Machine Interaction, and Thomas Derksen, studying Artificial Intelligence.<br>
+          We are three Masters students: 
+          <ul>
+            <li>Michael Lekander, studying Computer Science </li>  
+            <li>Maikel Withagen, studying Artificial Intelligence and Human Machine Communcation</li> 
+            <li>Thomas Derksen, studying Artificial Intelligence.</li>
+          </ul>
           We hope this project has learned you something about the knowledge involved in a game of the Resistance, and we encourage you to actually play a round to see how it works in real life!
         </div>
       </div>
@@ -777,12 +817,12 @@
     <script>
       $(document).ready(function() {
         $('#fullpage').fullpage({ 
-          anchors: ['introAnchor', 'resistanceAnchor', 'visualizationAnchor', 'analysisAnchor', 'analysisAnchor2', 'aboutAnchor', 'lastpageAnchor'],
+          anchors: ['introAnchor', 'resistanceAnchor', 'visualizationAnchor', 'analysisAnchor', 'analysisAnchor2', 'analysisAnchor3', 'aboutAnchor', 'lastpageAnchor'],
           menu: '#myMenu',
           slidesNavigation: true,
           slidesNavPosition: 'bottom',
           paddingTop: 50,
-          paddingBottom: 100,
+          paddingBottom: 30,
           verticalCentered: false,
           scrollOverflow: true,
         });

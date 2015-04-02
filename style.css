@@ -19,7 +19,8 @@ canvas {
 }
 
 .content h1 {
-  margin-bottom: 0px;
+  margin: 5px auto 0px;
+  text-align: center;
 }
 
 .content a, .content a:visited {
