@@ -1,4 +1,5 @@
 body {
+  background-color: #1BBC9B;
 	color: white;
 }
 
@@ -10,13 +11,15 @@ canvas {
  }
 
 .section {
-	padding-top: 50px;
 }
 
 .content {
 	width: 960px;
 	margin: 0 auto;
-	margin-bottom: 50px;
+}
+
+.content h1 {
+  margin-bottom: 0px;
 }
 
 .content a, .content a:visited {
@@ -25,10 +28,10 @@ canvas {
 }
 
 .fp-slidesNav.bottom {
-	bottom: 25px;
+	bottom: 0px;
 }
 
-#header {
+#header,#footer {
 	position: fixed;
 	height: 50px;
 	display: block;
@@ -37,6 +40,10 @@ canvas {
 	z-index:9;
 	text-align: center;
 	color: #f2f2f2;
+}
+
+#footer {
+  bottom: 0px;
 }
 
 #myMenu {
