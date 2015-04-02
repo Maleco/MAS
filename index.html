@@ -8,6 +8,14 @@
     <script src="demoD3.js"></script>
     <script type="text/javascript" src="jquery.fullPage.min.js"></script>
     <script type="text/javascript" src="jquery.slimscroll.min.js"></script>
+    <script>
+      var width = 400,
+      height = 400;
+
+      var color = d3.scale.category10();
+      var colorButtons = d3.select("#colorButtons");
+    </script>
+
   </head>
 
   <body> 
@@ -118,33 +126,6 @@
             </form>
           </div>
         </div>
-        <script>
-          var width = 400,
-          height = 400;
-
-          var color = d3.scale.category10();
-          var colorButtons = d3.select("#colorButtons");
-
-          var force = d3.layout.force()
-          .charge(-5000)
-          .linkDistance(150)
-          .friction(.95)
-          .gravity(.18)
-          .size([width, height]);
-
-          var svg = d3.select("#kripke0")
-          .append("svg")
-          .attr("width", width)
-          .attr("height", height);
-
-          var ktable = d3.select("#ktable0")
-          .append("table")
-          .attr("onmouseout", "colorMe()"),
-          kheader = ktable.append("thead"),
-          kbody = ktable.append("tbody");
-
-          initKripke(2,3);
-        </script>
       </div>
       <!-- END visualization PAGE-->
 
@@ -804,6 +785,27 @@
           verticalCentered: false,
         });
       });
+    </script>
+    <script>
+      var force = d3.layout.force()
+      .charge(-5000)
+      .linkDistance(150)
+      .friction(.95)
+      .gravity(.18)
+      .size([width, height]);
+
+      var svg = d3.select("#kripke0")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+      var ktable = d3.select("#ktable0")
+      .append("table")
+      .attr("onmouseout", "colorMe()"),
+      kheader = ktable.append("thead"),
+      kbody = ktable.append("tbody");
+
+      initKripke(2,3);
     </script>
   </body>
 </html>
