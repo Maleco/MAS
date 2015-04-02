@@ -15,8 +15,8 @@
       <ul id="myMenu">
         <li data-menuanchor="introAnchor" class="active"><a href="#introAnchor">     Introduction</a></li>
         <li data-menuanchor="resistanceAnchor">          <a href="#resistanceAnchor">The Resistance</a></li>
+        <li data-menuanchor="visualizationAnchor">                <a href="#visualizationAnchor">      Visualization</a></li>
         <li data-menuanchor="analysisAnchor">            <a href="#analysisAnchor">  Analysis</a></li>
-        <li data-menuanchor="demoAnchor">                <a href="#demoAnchor">      Demo</a></li>
         <li data-menuanchor="aboutAnchor">               <a href="#aboutAnchor">     About</a></li>
       </ul>
     </div>
@@ -57,18 +57,96 @@
           of the players approve of the team, then that team goes on the mission. Otherwise, the next player 
           proposes a team, and the process is repeated. If everyone's nomination gets rejected, then the Bad 
           team automatically wins. The size of the mission team, n, changes for each round. </p><p>
-          In addition to the standard "Good" and "Spy" roles, there exists optional roles which add or 
-          obscure knowledge in various ways: 
-          <ul style="text-align: left">
-            <li> A Good character, "Merlin", that knows who all the Spies are. However, if at any point the Spies know who Merlin is, the Spies instantly win. </li>
-            <li> A Good character, "Percival", that knows Merlin and one Spy, but cannot distinguish between them.</li> 
-            <li> A Spy character, "Mordred", that is unknown to Merlin. </li>
-            <li> A Spy character, "Oberon", that is unknown to other Spies, and does not know the other Spies. </li>
-            <li> A pair of characters, the "Lancelots", whose allegiance may switch at random moments in the game.</li>
-          </ul>
-          </p>
+          </p><p>
+          For our analysis, we assume that the players of the game our rational agents. 
+          Therefore they know everything they should know, and they won't make irrational choices. 
+          We also assume that Spies will act as Good players when choosing a mission team, so they don't give their evil intentions away. 
+          They will only show their true intentions if it means they will automatically win the game, or if it?s the only way to prevent a loss.
+
+          <h2>The knowledge in the Resistance</h2>
+          The Resistance is a game where the knowledge of the players plays a large role. 
+          Good players have to figure out who the Spies are, so they can leave them out of missions. 
+          Spies need to know what the Good players know, so they can assume the right tactic.
+          We can display all of the knowledge in Kripke models. The model for the initial game state with 5 players will always look like this:
+          <br><br>
+          In this representation, the numbers stand for the players that are Spies in that world.
+          So, world (1,3) is the world where player 1 and 3 are Spies, and the rest of the players are Good. 
+          In our Kripke models, we assume that all worlds are reflexive for all players.
+          There should never be the inconsistency that players don't hold the world they are in for possible.
+          </p><p>
+          It becomes apparent from the Kripke model that players can't distinguish between worlds where they are not Spies at first. 
+          But in a world where a player is a Spy, he only holds that world for possible. This is because a Spy always knows the true state of the game. 
+          It's also interesting to note that there are no double worlds, and all worlds are connected to each other with a finite number of connections.
         </div>
       </div>
+      <!-- END INTRO PAGE-->
+
+      <div id="visualization" class="section">
+        <div class="content">
+          <h1>Visualising Kripke models</h1>
+          Next to our analysis, we have worked on a javascript applet that can visualize Kripke models. 
+          In this applet, all knowledge in a certain game state is displayed. 
+          The numbers stand for the worlds where those players are Spies.
+          E.g., in world 12, player 1 and 2 are Spies.
+          Furthermore, the lines between the worlds represent the connections for certain players. 
+          Different colors stand for different players. To see the connections for one specific player, you can press the focus button for that player. 
+          If you want to see all connections again, you can press reset focus.<br>
+          Initially, you will see the Kripke model for the situation before the first mission. 
+          There is, however, also a functionality to see how the knowledge changes after certain missions. 
+          You can input the members of the team and if the mission failed or succeeded. 
+          There are two additional parameters: 
+          if the Spies have to fail every mission they're on and if you can see the number of fails after every mission or not.
+          After you've set the mission like you want it to be, you can press "Go on a mission".
+          This will update the Kripke model to accurately represent the new knowledge that is gained from the mission you entered.<br>
+          To the right of the Kripke model, there's also a table that shows what players would know if they were on the Good team.
+          The different columns stand for the knowledge of the different players as if they were Good.
+          The rows stand for what the players know about that player. 
+          Green cells represent players which are considered Good, red cells are Bad players, 
+          and if a cel is yellow, the alignment of the player is still unknown.<br>
+          This applet can be used to see how the knowledge of the players develops during a certain game, or on a certain turn.
+          You can also see one of its uses in our analysis. 
+          <div id="kripke0" class="kripke"><h3>Kripke Model   </h3></div>
+          <div id="ktable0" class="ktable"><h3>Knowledge Table</h3></div>
+          <div id="controls">
+            <form>
+              <input type="text" name="missionTeam" placeholder="Mission team?" /> <br />
+              <input type="number" name="numFails" placeholder="Number of fails?" /> <br />
+              <label><input type="checkbox" name="forceFail" />Force spies to fail?</label> <br />
+              <label><input type="checkbox" name="seeFails" />See number of fails?</label> <br />
+              <!-- this is horrendous... -->
+              <input type="button" onclick="missionResults(missionTeam.value, numFails.value, forceFail.checked, seeFails.checked)" value="Go on a mission!" />
+            </form>
+          </div>
+        </div>
+        <script>
+          var width = 400,
+          height = 400;
+
+          var color = d3.scale.category10();
+          var colorButtons = d3.select("#colorButtons");
+
+          var force = d3.layout.force()
+          .charge(-5000)
+          .linkDistance(150)
+          .friction(.95)
+          .gravity(.18)
+          .size([width, height]);
+
+          var svg = d3.select("#kripke0")
+          .append("svg")
+          .attr("width", width)
+          .attr("height", height);
+
+          var ktable = d3.select("#ktable0")
+          .append("table")
+          .attr("onmouseout", "colorMe()"),
+          kheader = ktable.append("thead"),
+          kbody = ktable.append("tbody");
+
+          initKripke(2,3);
+        </script>
+      </div>
+      <!-- END visualization PAGE-->
 
       <div id="analysis" class="section"><div class="slide"><div class="content">
             <h1>Analysis</h1> 
@@ -84,11 +162,6 @@
             <div id="ktable" class="ktable"><h3> Knowledge Table</h3></div>
             <script>
               // Width of the svg, and the table
-              var width = 400,
-              height = 400;
-
-              var color = d3.scale.category10();
-
               var force = d3.layout.force()
               .charge(-5000)
               .linkDistance(150)
@@ -100,8 +173,6 @@
               .append("svg")
               .attr("width", width)
               .attr("height", height);
-
-              var colorButtons = d3.select("#colorButtons");
 
               var ktable = d3.select("#ktable")
               .append("table")
@@ -432,47 +503,9 @@
         </div>
         <!-- END SECOND ANALYSIS SLIDE -->
       </div>
+      <!-- END ANALYSIS PAGE-->
 
 
-      <div id="demo" class="section">
-        <div class="content">
-          <div id="kripke0" class="kripke"><h3>Kripke Model   </h3></div>
-          <div id="ktable0" class="ktable"><h3>Knowledge Table</h3></div>
-          <div id="controls">
-            <form>
-              <input type="text" name="missionTeam" placeholder="Mission team?" /> <br />
-              <input type="number" name="numFails" placeholder="Number of fails?" /> <br />
-              <label><input type="checkbox" name="forceFail" />Force spies to fail?</label> <br />
-              <label><input type="checkbox" name="seeFails" />See number of fails?</label> <br />
-              <!-- this is horrendous... -->
-              <input type="button" onclick="missionResults(missionTeam.value, numFails.value, forceFail.checked, seeFails.checked)" value="Go on a mission!" />
-            </form>
-          </div>
-        </div>
-        <script>
-          var colorButtons = d3.select("#colorButtons");
-
-          var force = d3.layout.force()
-          .charge(-5000)
-          .linkDistance(150)
-          .friction(.95)
-          .gravity(.18)
-          .size([width, height]);
-
-          var svg = d3.select("#kripke0")
-          .append("svg")
-          .attr("width", width)
-          .attr("height", height);
-
-          var ktable = d3.select("#ktable0")
-          .append("table")
-          .attr("onmouseout", "colorMe()"),
-          kheader = ktable.append("thead"),
-          kbody = ktable.append("tbody");
-
-          initKripke(2,3);
-        </script>
-      </div>
 
       <div id="about" class="section"><div class="content">
           <h2>This page is all about us :) </h2>
@@ -483,7 +516,7 @@
     <script>
       $(document).ready(function() {
         $('#fullpage').fullpage({ 
-          anchors: ['introAnchor', 'resistanceAnchor', 'analysisAnchor', 'demoAnchor', 'aboutAnchor', 'lastpageAnchor'],
+          anchors: ['introAnchor', 'resistanceAnchor', 'visualizationAnchor', 'analysisAnchor', 'aboutAnchor', 'lastpageAnchor'],
           sectionsColor: ['#1BBC9B','#1BBC9B','#1BBC9B','#1BBC9B','#1BBC9B'],
           menu: '#myMenu',
           scrollOverflow: true,
