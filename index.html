@@ -130,11 +130,6 @@
 						<div id="kripke2" class="kripke"><h3>Kripke Model    </h3></div>
 						<div id="ktable2" class="ktable"><h3> Knowledge Table</h3></div>
 						<script>
-							// Width of the svg, and the table
-							var width = 400,
-							height = 400;
-
-							var color = d3.scale.category10();
 
 							var force = d3.layout.force()
 							.charge(-5000)
@@ -147,8 +142,6 @@
 							.append("svg")
 							.attr("width", width)
 							.attr("height", height);
-
-							var colorButtons = d3.select("#colorButtons");
 
 							var ktable = d3.select("#ktable2")
 							.append("table")
@@ -167,11 +160,6 @@
 						<div id="ktable3" class="ktable"><h3> Knowledge Table</h3></div>
 						<script>
 							// Width of the svg, and the table
-							var width = 400,
-							height = 400;
-
-							var color = d3.scale.category10();
-
 							var force = d3.layout.force()
 							.charge(-5000)
 							.linkDistance(150)
@@ -183,8 +171,6 @@
 							.append("svg")
 							.attr("width", width)
 							.attr("height", height);
-
-							var colorButtons = d3.select("#colorButtons");
 
 							var ktable = d3.select("#ktable3")
 							.append("table")
@@ -202,12 +188,6 @@
 						<div id="kripke4" class="kripke"><h3>Kripke Model    </h3></div>
 						<div id="ktable4" class="ktable"><h3> Knowledge Table</h3></div>
 						<script>
-							// Width of the svg, and the table
-							var width = 400,
-							height = 400;
-
-							var color = d3.scale.category10();
-
 							var force = d3.layout.force()
 							.charge(-5000)
 							.linkDistance(150)
@@ -219,8 +199,6 @@
 							.append("svg")
 							.attr("width", width)
 							.attr("height", height);
-
-							var colorButtons = d3.select("#colorButtons");
 
 							var ktable = d3.select("#ktable4")
 							.append("table")
@@ -241,11 +219,6 @@
 						<div id="ktable5" class="ktable"><h3> Knowledge Table</h3></div>
 						<script>
 							// Width of the svg, and the table
-							var width = 400,
-							height = 400;
-
-							var color = d3.scale.category10();
-
 							var force = d3.layout.force()
 							.charge(-5000)
 							.linkDistance(150)
@@ -257,8 +230,6 @@
 							.append("svg")
 							.attr("width", width)
 							.attr("height", height);
-
-							var colorButtons = d3.select("#colorButtons");
 
 							var ktable = d3.select("#ktable5")
 							.append("table")
@@ -350,11 +321,9 @@
 
 			<div id="demo" class="section">
 				<div class="content">
-					<div id="kripke0" class="kripke">Kripke Model</div>
-					<div id="ktable0" class="ktable"> Knowledge Table</div>
+					<div id="kripke0" class="kripke"><h3>Kripke Model   </h3></div>
+					<div id="ktable0" class="ktable"><h3>Knowledge Table</h3></div>
 					<div id="controls">
-						<button onclick="colorMe();">Reset focus</button>
-						<div id="colorButtons"></div>
 						<form>
 							<input type="text" name="missionTeam" placeholder="Mission team?" /> <br />
 							<input type="number" name="numFails" placeholder="Number of fails?" /> <br />
@@ -366,11 +335,7 @@
 					</div>
 				</div>
 				<script>
-					// Width of the svg, and the table
-					var width = 400,
-					height = 400;
-
-					var color = d3.scale.category10();
+					var colorButtons = d3.select("#colorButtons");
 
 					var force = d3.layout.force()
 					.charge(-5000)
@@ -383,8 +348,6 @@
 					.append("svg")
 					.attr("width", width)
 					.attr("height", height);
-
-					var colorButtons = d3.select("#colorButtons");
 
 					var ktable = d3.select("#ktable0")
 					.append("table")
@@ -403,7 +366,6 @@
 
 		</div>
 		<script>
-
 			$(document).ready(function() {
 				$('#fullpage').fullpage({ 
 					anchors: ['introAnchor', 'resistanceAnchor', 'analysisAnchor', 'demoAnchor', 'aboutAnchor', 'lastpageAnchor'],

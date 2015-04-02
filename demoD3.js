@@ -88,7 +88,7 @@ function setData(graph) {
 	.text(function(d) { return d;})
 	.attr("width", width/5)
 	.attr("height", height/6)
-	.style("background", "lightblue")
+	.style("background", function(d) { return color(d);})
 	;
 
 	// Set the table cells
