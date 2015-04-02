@@ -10,7 +10,6 @@ canvas {
  }
 
 .section {
-	text-align: center;
 	padding-top: 50px;
 }
 
@@ -97,4 +96,40 @@ svg text {
 #colorButtons {
   display: inline;
 }
+
+/*************************************
+* D3 knowledge table stuff
+*************************************/
+.kripke {
+  float: left;
+	width: 480px;
+	height: 480px;
+}
+
+.kripke svg {
+  border: 1px solid black;
+}
+/*************************************
+* D3 knowledge table stuff
+*************************************/
+
+.ktable {
+  float: left;
+	width: 480px;
+	height: 480px;
+}
+
+.ktable table {
+  border-collapse: collapse;
+  border-spacing: 0;
+	width: 420px;
+}
+
+.ktable td{
+  padding: 0;
+	text-align: center;
+	color: black;
+}
+
+
 
