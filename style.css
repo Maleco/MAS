@@ -98,7 +98,7 @@ svg text {
 }
 
 /*************************************
-* D3 knowledge table stuff
+* D3 model stuff
 *************************************/
 .kripke {
   float: left;
@@ -131,7 +131,7 @@ svg text {
 	color: black;
 }
 
-theader, tbody {
+thead, tbody {
 	border: 1px solid black;
 }
 

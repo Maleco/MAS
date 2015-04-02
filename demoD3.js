@@ -178,6 +178,7 @@ function spyKnowledge(p1, p2, graph) {
 
 function colorMe(p) {
 	if (p === undefined) {
+				<!-- END FIRST ANALYSIS SLIDE -->
 		svg.selectAll(".link")
 		.style("stroke", function(d){ return color(d.player); })
 		.style("stroke-width", 2);
