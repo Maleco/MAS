@@ -41,6 +41,8 @@ function Visualization(containerId, width, height) {
       .size([width, height]);
 
   this.svg = this.container
+    .append("div")
+      .classed("kripke", true)
     .append("svg")
       .attr("width", width)
       .attr("height", height);
@@ -50,11 +52,13 @@ function Visualization(containerId, width, height) {
   //  .append("div")
   //    .classed("colorButtons", true);
 
-  //this.ktable = container
-  //  .append("table")
-  //    .attr("onmouseout", function() { console.log("Here... focused?"); vis.focus(); });
-  //this.kheader = ktable.append("theader");
-  //this.kbody = ktable.append("tbody");
+  var ktable = this.container
+    .append("div")
+      .classed("ktable", true)
+    .append("table")
+      .on("mouseout", function() { vis.focus(); });
+  this.kheader = ktable.append("thead").append("tr");
+  this.kbody = ktable.append("tbody");
 }
 
 Visualization.prototype.initGame = function(numSpies, numResistance, forceFail, seeFails) {
@@ -67,10 +71,9 @@ Visualization.prototype.initGame = function(numSpies, numResistance, forceFail, 
 }
 
 Visualization.prototype.pushGameState = function(gameState) {
-  //TODO: Remove previous entries.
   this.currentGameState = gameState;
-  this.history.splice(this.histNdx, this.history.length-this.histNdx, gameState);
   this.histNdx++;
+  this.history.splice(this.histNdx, this.history.length-this.histNdx, gameState);
   this.drawData();
 
   return this;
@@ -79,7 +82,6 @@ Visualization.prototype.pushGameState = function(gameState) {
 Visualization.prototype.drawData = function(gameState) {
   var vis = this;
   gameState = gameState || this.currentGameState;
-  console.log(gameState);
   //TODO: ktable and color button stuff
   console.log(gameState);
   this.force
@@ -128,6 +130,45 @@ Visualization.prototype.drawData = function(gameState) {
       return "translate(" + [d.x, d.y] + ")";
     });
   });
+
+  var numPlayers = gameState.playerList.length;
+  // Set the table header
+  var headerCells = this.kheader.selectAll("td")
+      .data(gameState.playerList);
+
+  headerCells.exit().remove();
+  headerCells.enter().insert("td")
+      .text(function(d) { return d; });
+
+  headerCells
+      .attr("width", this.width/numPlayers)
+      .attr("height", this.height/(numPlayers+1))
+      .on("mouseover", function(d) { vis.focus(d); })
+      .style("background", function(d) { return vis.color(d); });
+
+  // Set the table cells
+  var tableRows = this.kbody.selectAll("tr")
+      .data(gameState.playerList);
+
+  tableRows.exit().remove();
+  tableRows.enter().insert("tr");
+
+  var tableCells = tableRows.selectAll("td")
+      .data(gameState.playerList);
+
+  tableCells.exit().remove();
+  tableCells.enter().insert("td")
+      .on("mouseover", function(d) { vis.focus(d); });
+
+  this.kbody.selectAll("tr").selectAll("td")
+      .attr("width", this.width/numPlayers)
+      .attr("height", this.height/(numPlayers+1))
+      .text(function(d, i, j) { return j+1; })
+      .style("background", function(a,b,c) {
+        var p1 = c+1, p2 = b+1;
+        var possible = gameState.spyKnowledge(p1,p2);
+        return possible > 0 ? "red" : possible < 0 ? "green" : "yellow";
+      });
 }
 
 Visualization.prototype.goOnAMission = function(missionTeam, numFails) {
@@ -156,15 +197,17 @@ Visualization.prototype.goForward = function() {
 }
 
 Visualization.prototype.focus = function(p) {
-  console.log("Inside focus.");
+  var color = this.color;
   if (p === undefined) {
     this.svg.selectAll(".link")
         .style("stroke", function(d){ return color(d.player); })
-        .style("stroke-width", 2);
+        .style("stroke-width", 2)
+        .style("stroke-opacity", function(d){ return 0.6; });
   } else {
     this.svg.selectAll(".link")
         .style("stroke", function(d){ return d.player == p ? color(d.player) : "#eee"; })
-        .style("stroke-width", function(d){ return d.player == p ? 3 : 1; });
+        .style("stroke-width", function(d){ return d.player == p ? 3 : 1; })
+        .style("stroke-opacity", function(d){ return d.player == p ? 1 : 0.2; });
   }
 }
 
@@ -356,47 +399,6 @@ function inverse(spyNums, numResistance) {
   return out;
 }
 
-function colorMe(p) {
-  if (p === undefined) {
-    <!-- END FIRST ANALYSIS SLIDE -->
-    svg.selectAll(".link")
-    .style("stroke", function(d){ return color(d.player); })
-    .style("stroke-width", 2);
-  } else {
-    svg.selectAll(".link")
-    .style("stroke", function(d){ return d.player == p ? color(d.player) : "#eee"; })
-    .style("stroke-width", function(d){ return d.player == p ? 3 : 1; });
-  }
-}
-
-function knownGood(player, graph) {
-  for (var i = 0; i < graph.worlds.length; i++) {
-    var world = graph.worlds[i];
-    if (world.spies.indexOf(player) >= 0 || world.spiesRaw.indexOf(player) >= 0) {
-      if (!removeWorld(world.spies, graph)) {
-        console.log(world);
-        console.log("WTF? "+i);
-        return;
-      }
-      i--;
-    }
-  }
-}
-
-function knownBad(player, graph) {
-  for (var i = 0; i < graph.worlds.length; i++) {
-    var world = graph.worlds[i];
-    if (world.resistance.indexOf(player) >= 0 || world.resistanceRaw.indexOf(player) >= 0) {
-      if (!removeWorld(world.spies, graph)) {
-        console.log(world);
-        console.log("WTF? "+i);
-        return;
-      }
-      i--;
-    }
-  }
-}
-
 // Find the length of the longest common subsequence of a and b. Assumes a and b are in sorted order.
 function lenLCS(a, b) {
   var out = 0;
@@ -412,70 +414,4 @@ function lenLCS(a, b) {
     }
   }
   return out;
-}
-
-function filterLenLCS(missionTeam, graph, f) {
-  for (var i = 0; i < graph.worlds.length; i++) {
-    var world = graph.worlds[i];
-    if (!f(lenLCS(world.spies,missionTeam))) {
-      if (!removeWorld(world.spies, graph)) {
-        console.log("WTF? "+i);
-        console.log(world);
-        return;
-      } else {
-        console.log("Removing "+world.spies);
-      }
-      i--;
-    }
-  }
-}
-
-function missionResults(missionTeam, numFails, forceFail, seeFails) {
-  missionTeam = missionTeam.split("").sort().join("");
-  if (numFails == 0) {
-    if (forceFail) {
-      filterLenLCS(missionTeam, graph, function(f) { return f == 0; });
-    }
-  } else {
-    if (seeFails) {
-      filterLenLCS(missionTeam, graph, function(f) { return f == numFails; });
-    } else {
-      filterLenLCS(missionTeam, graph, function(f) { return f != 0; });
-    }
-  }
-
-  setData(graph);
-}
-
-var graph = {};
-function initKripke(spies, resistance) {
-  graph.playerList = new Array(spies+resistance);
-  for (var i = 0; i < spies+resistance; i++) {
-    graph.playerList[i] = i+1;
-  }
-
-  graph.worlds = initWorlds(spies,resistance);
-
-  graph.players = {};
-  for (var i = 0; i < graph.worlds.length; i++) {
-    var world = graph.worlds[i];
-    for (var j in world.resistance) {
-      var player = world.resistance[j];
-      (graph.players[player] = graph.players[player] || []).push(world);
-    }
-  }
-
-  graph.links = [];
-  for (var player in graph.players) {
-    var ws = graph.players[player];
-    for (var i = 0; i < ws.length; i++) {
-      for (var j = i+1; j < ws.length; j++) {
-        graph.links.push({source: ws[i], target: ws[j], player: player});
-      }
-    }
-  }
-
-  //nodes[0].reality = true;
-
-  setData(graph);
 }
