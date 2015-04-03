@@ -1,6 +1,7 @@
 body {
-  background-color: #1BBC9B;
-	color: white;
+	font-family: 'Open Sans', 'Arial', sans-serif;
+	background-color: whitesmoke;
+	font-size: 18px;
 }
 
 canvas {
@@ -21,6 +22,9 @@ canvas {
 .content h1 {
   margin: 5px auto 0px;
   text-align: center;
+}
+.content h2 {
+	margin: 10px 0;
 }
 
 .content a, .content a:visited {
