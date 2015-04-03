@@ -498,9 +498,9 @@
             If 2 and 4 go on a mission, the resulting Kripke model is as follows:<br><br>
             <div id="k22"></div>
             <script>
-              var v22 = new Visualization("#k22").initGame(2,3,false,true).goOnAMission("24",2);
+              var v22 = new Visualization("#k22").initGame(2,3,false,true).goOnAMission("13", 1).goOnAMission("24",1);
             </script>
-
+            </div><div class="slide">
             There's only one thing for certain: 5 is not a Spy.
             Therefore, <i>M &#8872; &not;e</i>.
             Since this is true in all worlds reachable for all players in any number of steps, this is common knowledge.
@@ -511,13 +511,13 @@
             You can see from the Kripke model that the following holds: <i>M<sub>12</sub> &#8872; K<sub>3</sub>a</i>.
             3 now knows that 1 is a Spy.
             The same can be said about 4 and 2: <i>M <sub>12</sub> &#8872; K<sub>4</sub>b</i>.
-            Everybody also know this, which we can see from the fact that <i>M &#8872; &not;c &rar; K<sub>3</sub>a</i> and <i>M &#8872; &not;d &rar; K<sub>4</sub>b</i> hold.
+            Everybody also know this, which we can see from the fact that <i>M &#8872; &not;c &rarr; K<sub>3</sub>a</i> and <i>M &#8872; &not;d &rarr; K<sub>4</sub>b</i> hold.
             The only player that doesn't know any allegiance except for his own is player 5.
             <br>
             If the Spies can now propose a team, they have to include player 5 to possibly get that third vote they need to get the approval for the team.
             For the Good players, it's a 50% chance they only choose Good players at best.
             Once again, the Spies have quite a decent chance of winning the game.<br><br>
-
+            </div><div class="slide">
             Now let us go way back, to the second mission of this game.
             We assumed that it succeeded, but what happens when it fails? Basically, 
             the resulting Kripke models will be the same as when the second and third mission succeeded, and the fourth one failed.
@@ -526,7 +526,10 @@
             If there's a Spy on that mission, the mission will definitely fail and the Spies will win.
             However, if it's just Good players, there's still no consensus about who the last Good player is, so the Spies still have a chance to win.
             If, for example, 2, 4 and 5 went on the second mission and 4 and 5 go on the third mission, this will be the resulting Kripke model:<br><br>
-
+            <div id="k23"></div>
+            <script>
+              var v23 = new Visualization("#k23").initGame(2,3,false,true).goOnAMission("13", 1).goOnAMission("245",1).goOnAMission("45", 0);
+            </script>
             As you can see, there's still more than one option for players 4 and 5.
             It must be said that for every team that isn't 4 and 5, there is a decisive victor.<br>
             We went through all possible (interesting) options if Spies fail the first mission.
@@ -545,25 +548,35 @@
             Let's see if this is true.<br>
             If 1, 3 and 4 go on the second mission and 1 will fail it, Good players don't gain an awful lot of information.
             They just know that  there is at least one Spy amongst the members of that team.
-            This will result in the following Kripke model:<br><br>
-
+            This will result in the following Kripke model:
+            <div id="k24"></div>
+            <script>
+              var v24 = new Visualization("#k24").initGame(2,3,false,true).goOnAMission("134",1);
+            </script>
+            </div><div class="slide">
             Only world (2, 5) will "disappear", so very little knowledge is gained.
             Nobody will know anything useful yet.<br>
             The next mission is a two player mission once again.
             If there's one fail, there's at least six worlds left, and at most eight.
             In the best possible scenario for the Good guys, 2 and 5 will go on a mission and the resulting Kripke model will be this one:<br><br>
-
-
+            <div id="k25"></div>
+            <script>
+              var v25 = new Visualization("#k25").initGame(2,3,false,true).goOnAMission("134",1).goOnAMission("25", 1);
+            </script>
             As you can see, it doesn't look too good for the Good guys.
             Nobody knows anything for certain yet, and there are still a lot of possibilities.
             The Good players do have to propose a team with just Good players for the fourth mission to have any chance of winning the game.
             The odds are, however, not in their favour.<br>
+            </div><div class="slide">
             Now let's see what happens when the third mission succeeds.
             This will give nobody any information, and it will put the Good players on two points.
             Therefore, Spies will have to fail all of the next mission.
             If there's one Spy on the fourth one, the mission will fail and at most one world will become unreachable.
-            The Kripke model where 1, 2 and 5 go on the fourth mission, for example, looks like this:<br><br>
-
+            The Kripke model where 1, 2 and 5 go on the fourth mission, for example, looks like this:
+            <div id="k26"></div>
+            <script>
+              var v26 = new Visualization("#k26").initGame(2,3,false,true).goOnAMission("134",1).goOnAMission("125", 1);
+            </script>
             It becomes apparent that the Good players don't have a lot of knowledge, so the last mission becomes a guessing game once again.
             It doesn't really get any better for the Good players in the other cases where there's one fail on the mission.
             The only way in which it could go better is if there's two Spies and both of them fail.
