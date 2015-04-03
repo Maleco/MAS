@@ -36,6 +36,13 @@ canvas {
 	bottom: 0px;
 }
 
+.fp-controlArrow.fp-prev {
+   border-color: transparent #000 transparent transparent !important;
+}
+.fp-controlArrow.fp-next {
+   border-color: transparent transparent transparent #000 !important;
+}
+
 #header,#footer {
 	position: fixed;
 	height: 50px;
