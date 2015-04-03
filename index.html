@@ -116,13 +116,13 @@
           The two "arrowed" buttons allow you to go through the history of the models.<br>
           </p>
           <div id="k0"></div>
-          <div id="controls">
+          <div class="kcontrols">
             <form>
               <input type="text" size="10" name="missionTeam" placeholder="Mission team?" /> 
               <input type="number" size="1" name="numFails" placeholder="Number of fails?" /> 
               <input type="button" onclick="v0.goOnAMission(missionTeam.value, numFails.value)" value="Go on a mission!" />
-              <input type="button" onclick="" value="<<" />
-              <input type="button" onclick="" value=">>" />
+              <input type="button" onclick="v0.goBack()" value="<<" />
+              <input type="button" onclick="v0.goForward()" value=">>" />
               <!--
               <label><input type="checkbox" name="forceFail" />Force spies to fail?</label> 
               <label><input type="checkbox" name="seeFails" />See number of fails?</label> <br />

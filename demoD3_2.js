@@ -32,6 +32,7 @@ function Visualization(containerId, width, height) {
   this.color = d3.scale.category10();
 
   this.container = d3.select(containerId);
+  this.container.classed("kcontainer",true);
 
   this.force = d3.layout.force()
       .charge(-5000)
@@ -177,10 +178,12 @@ Visualization.prototype.goOnAMission = function(missionTeam, numFails) {
 }
 
 Visualization.prototype.histJump = function(i) {
-  if (i >= 0 && i < this.history.length-1) {
+  if (i >= 0 && i < this.history.length) {
     this.histNdx = i;
     this.currentGameState = this.history[this.histNdx];
     this.drawData();
+  } else {
+    console.log("Your history doesn't support that.");
   }
   return this;
 }
