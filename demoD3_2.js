@@ -83,7 +83,6 @@ Visualization.prototype.drawData = function(gameState) {
   var vis = this;
   gameState = gameState || this.currentGameState;
   //TODO: ktable and color button stuff
-  console.log(gameState);
   this.force
       .nodes(gameState.worlds)
       .links(gameState.links)
@@ -177,23 +176,21 @@ Visualization.prototype.goOnAMission = function(missionTeam, numFails) {
   return this;
 }
 
-Visualization.prototype.goBack = function() {
-  if (this.histNdx > 0) {
-    this.histNdx--;
+Visualization.prototype.histJump = function(i) {
+  if (i >= 0 && i < this.history.length-1) {
+    this.histNdx = i;
     this.currentGameState = this.history[this.histNdx];
     this.drawData();
   }
   return this;
 }
 
+Visualization.prototype.goBack = function() {
+  return this.histJump(this.histNdx-1);
+}
+
 Visualization.prototype.goForward = function() {
-  //TODO
-  if (this.histNdx < this.history.length-1) {
-    this.histNdx++;
-    this.currentGameState = this.history[this.histNdx];
-    this.drawData();
-  }
-  return this;
+  return this.histJump(this.histNdx+1);
 }
 
 Visualization.prototype.focus = function(p) {
@@ -230,6 +227,7 @@ function GameState(numSpies, numResistance, forceFail, seeFails) {
   this.numPlayers = numSpies + numResistance;
   this.forceFail = forceFail;
   this.seeFails = seeFails;
+  this.label = "Game init: "+numSpies+" spies, "+numResistance+" good, "+(forceFail?"":"don't ")+"force failure, "+(seeFails?"":"don't ")+"see fails";
 
   this.playerList = new Array(this.numPlayers);
   for (var i = 0; i < this.numPlayers; i++) {
@@ -293,6 +291,7 @@ GameState.prototype.missionResults = function(missionTeam, numFails) {
       out.filterLenLCS(missionTeam, function(f) { return f != 0; });
     }
   }
+  out.label = "Mission: "+missionTeam+" with "+numFails+" failure"+(numFails == 1? "" : "s");
 
   return out;
 }
@@ -305,8 +304,6 @@ GameState.prototype.filterLenLCS = function(missionTeam, f) {
         console.log("WTF? "+i);
         console.log(world);
         return;
-      } else {
-        console.log("Removing "+world.spies);
       }
       i--;
     }

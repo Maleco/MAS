@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <script src="demoD3.js"></script>
+    <script src="demoD3_2.js"></script>
     <script type="text/javascript" src="jquery.fullPage.min.js"></script>
     <script type="text/javascript" src="jquery.slimscroll.min.js"></script>
     <script>
@@ -76,7 +76,7 @@
           We also assume that Spies will act as Good players when choosing a mission team, so they don't give their evil intentions away. 
           They will only show their true intentions if it means they will automatically win the game, or if it's the only way to prevent a loss.
 
-          <h2>The knowledge in the Resistance</h2>
+          <h2>The knowledge in The Resistance</h2>
           The Resistance is a game where the knowledge of the players plays a large role. 
           Good players have to figure out who the Spies are, so they can leave them out of missions. 
           Spies need to know what the Good players know, so they can assume the right tactic.
@@ -97,7 +97,7 @@
       <div id="visualization" class="section">
         <div class="content">
           <h1>Visualising Kripke models</h1>
-          Next to our analyses, we have worked on an applet that can visualize Kripke models. 
+          In addition to our analyses, we have developed an applet to visualize Kripke models.
           In this applet, all knowledge in a certain game state is displayed. 
           The numbers stand for the worlds where those players are Spies.
           E.g. in world 12, player 1 and 2 are Spies.
@@ -116,18 +116,21 @@
           Green cells represent indicate the knowledge that that player is considered Good, red cells are considered Bad players.
           Yellow indicates that the alignment of the player is still unknown.<br>
           It can also be the case that it becomes known that one of the players is a Spy. In that case, there are no worlds left where that player is Good, so all of the cells in his column will turn grey.
-          <div id="kripke0" class="kripke"><h3>Kripke Model   </h3></div>
-          <div id="ktable0" class="ktable"><h3>Knowledge Table</h3></div>
+          <div id="k0"></div>
           <div id="controls">
             <form>
               <input type="text" size="10" name="missionTeam" placeholder="Mission team?" /> 
               <input type="number" size="1" name="numFails" placeholder="Number of fails?" /> 
-              <input type="button" onclick="missionResults(missionTeam.value, numFails.value, forceFail.checked, seeFails.checked)" value="Go on a mission!" /><br />
+              <input type="button" onclick="v0.goOnAMission(missionTeam.value, numFails.value)" value="Go on a mission!" /><br />
+              <!--
               <label><input type="checkbox" name="forceFail" />Force spies to fail?</label> 
               <label><input type="checkbox" name="seeFails" />See number of fails?</label> <br />
-              <!-- this is horrendous... -->
+              -->
             </form>
           </div>
+          <script>
+            var v0 = new Visualization("#k0").initGame(2,3,false,true);
+          </script>
         </div>
       </div>
       <!-- END visualization PAGE-->
@@ -144,28 +147,9 @@
             it is a little bit easier to analyze. We could use this analysis as a basis for more elaborate versions of the game.
             Initially, the Kripke model will look like this:
             </p>
-            <div id="kripke" class="kripke"><h3>Kripke Model    </h3></div>
-            <div id="ktable" class="ktable"><h3> Knowledge Table</h3></div>
+            <div id="k1"></div>
             <script>
-              var force = d3.layout.force()
-              .charge(-5000)
-              .linkDistance(150)
-              .friction(.95)
-              .gravity(.18)
-              .size([width, height]);
-
-              var svg = d3.select("#kripke")
-              .append("svg")
-              .attr("width", width)
-              .attr("height", height);
-
-              var ktable = d3.select("#ktable")
-              .append("table")
-              .attr("onmouseout", "colorMe()"),
-              kheader = ktable.append("thead"),
-              kbody = ktable.append("tbody");
-
-              initKripke(2,3);
+              var v1 = new Visualization("#k1").initGame(2,3,false,true);
             </script>
             <p>
             No player can distinguish between the worlds where they are not Spies themselves. 
@@ -184,30 +168,9 @@
             Let's assume that those Spies were player 1 and 2. 
             The Kripke model will look like this afterwards:
             </p>
-            <div id="kripke2" class="kripke"><h3>Kripke Model    </h3></div>
-            <div id="ktable2" class="ktable"><h3> Knowledge Table</h3></div>
+            <div id="k2"></div>
             <script>
-
-              var force = d3.layout.force()
-              .charge(-5000)
-              .linkDistance(150)
-              .friction(.95)
-              .gravity(.18)
-              .size([width, height]);
-
-              var svg = d3.select("#kripke2")
-              .append("svg")
-              .attr("width", width)
-              .attr("height", height);
-
-              var ktable = d3.select("#ktable2")
-              .append("table")
-              .attr("onmouseout", "colorMe()"),
-              kheader = ktable.append("thead"),
-              kbody = ktable.append("tbody");
-
-              initKripke(2,3);
-              missionResults("12", 2, 1,1);
+              var v2 = new Visualization("#k2").initGame(2,3,true,true).goOnAMission("12",2);
             </script>
             <p>
             As you can see, only one possible world is left.
@@ -224,29 +187,9 @@
             </p>
             </div><div class="slide">
             The Kripke model now looks like this:<br>
-            <div id="kripke3" class="kripke"><h3>Kripke Model    </h3></div>
-            <div id="ktable3" class="ktable"><h3> Knowledge Table</h3></div>
+            <div id="k3"></div>
             <script>
-              var force = d3.layout.force()
-              .charge(-5000)
-              .linkDistance(150)
-              .friction(.95)
-              .gravity(.18)
-              .size([width, height]);
-
-              var svg = d3.select("#kripke3")
-              .append("svg")
-              .attr("width", width)
-              .attr("height", height);
-
-              var ktable = d3.select("#ktable3")
-              .append("table")
-              .attr("onmouseout", "colorMe()"),
-              kheader = ktable.append("thead"),
-              kbody = ktable.append("tbody");
-
-              initKripke(2,3);
-              missionResults("34", 0, 1,1);
+              var v3 = new Visualization("#k3").initGame(2,3,true,true).goOnAMission("34",0);
             </script>
             </p><p>
             In this case, every player knows that between players 1, 2 and 5 there are two Spies.
@@ -285,30 +228,9 @@
             <p>
             This results in the following Kripke model:
             </p>
-            <div id="kripke4" class="kripke"><h3>Kripke Model    </h3></div>
-            <div id="ktable4" class="ktable"><h3> Knowledge Table</h3></div>
+            <div id="k4"></div>
             <script>
-              var force = d3.layout.force()
-              .charge(-5000)
-              .linkDistance(150)
-              .friction(.95)
-              .gravity(.18)
-              .size([width, height]);
-
-              var svg = d3.select("#kripke4")
-              .append("svg")
-              .attr("width", width)
-              .attr("height", height);
-
-              var ktable = d3.select("#ktable4")
-              .append("table")
-              .attr("onmouseout", "colorMe()"),
-              kheader = ktable.append("thead"),
-              kbody = ktable.append("tbody");
-
-              initKripke(2,3);
-              missionResults("34", 0, 1,1);
-              missionResults("234", 1, 1,1);
+              var v4 = new Visualization("#k4").initGame(2,3,true,true).goOnAMission("34",0).goOnAMission("234",1);
             </script>
             <p>
             In all of the remaining worlds, b is true.
@@ -336,29 +258,9 @@
             <p>
             The Kripke model will look like this:
             </p>
-            <div id="kripke5" class="kripke"><h3>Kripke Model    </h3></div>
-            <div id="ktable5" class="ktable"><h3> Knowledge Table</h3></div>
+            <div id="k5"></div>
             <script>
-              var force = d3.layout.force()
-              .charge(-5000)
-              .linkDistance(150)
-              .friction(.95)
-              .gravity(.18)
-              .size([width, height]);
-
-              var svg = d3.select("#kripke5")
-              .append("svg")
-              .attr("width", width)
-              .attr("height", height);
-
-              var ktable = d3.select("#ktable5")
-              .append("table")
-              .attr("onmouseout", "colorMe()"),
-              kheader = ktable.append("thead"),
-              kbody = ktable.append("tbody");
-
-              initKripke(2,3);
-              missionResults("13", 1, 1,1);
+              var v5 = new Visualization("#k5").initGame(2,3,true,true).goOnAMission("13",1);
             </script>
             <p>
             As you can see, in all worlds that are reachable for player 3 where 3 is not a Spy himself, 1 is a Spy.
@@ -388,32 +290,10 @@
             The only remaining world, then, is the one where 1 and 2 are Spies, so it becomes common knowledge that they are.
             The Good players have now won.
 
-            <div id="kripke6" class="kripke"><h3>Kripke Model    </h3></div>
-            <div id="ktable6" class="ktable"><h3> Knowledge Table</h3></div>
+            <div id="k6"></div>
             <script>
-              var force = d3.layout.force()
-              .charge(-5000)
-              .linkDistance(150)
-              .friction(.95)
-              .gravity(.18)
-              .size([width, height]);
-
-              var svg = d3.select("#kripke6")
-              .append("svg")
-              .attr("width", width)
-              .attr("height", height);
-
-              var ktable = d3.select("#ktable6")
-              .append("table")
-              .attr("onmouseout", "colorMe()"),
-              kheader = ktable.append("thead"),
-              kbody = ktable.append("tbody");
-
-              initKripke(2,3);
-              missionResults("13", 1, 1,1);
-              missionResults("345", 0, 1,1);
+              var v6 = new Visualization("#k6").initGame(2,3,true,true).goOnAMission("13",1).goOnAMission("345",0);
             </script>
-            </p>
           </div>
           <div class="slide">
             <p>
@@ -424,30 +304,9 @@
             Since 3 wasn't on that mission and every world contained either 1 or 3 after the first mission, everybody can now conclude that player 1 is a Spy.
             This is also visible in the resulting Kripke model:
             </p>
-            <div id="kripke7" class="kripke"><h3>Kripke Model    </h3></div>
-            <div id="ktable7" class="ktable"><h3> Knowledge Table</h3></div>
+            <div id="k7"></div>
             <script>
-              var force = d3.layout.force()
-              .charge(-5000)
-              .linkDistance(150)
-              .friction(.95)
-              .gravity(.18)
-              .size([width, height]);
-
-              var svg = d3.select("#kripke7")
-              .append("svg")
-              .attr("width", width)
-              .attr("height", height);
-
-              var ktable = d3.select("#ktable7")
-              .append("table")
-              .attr("onmouseout", "colorMe()"),
-              kheader = ktable.append("thead"),
-              kbody = ktable.append("tbody");
-
-              initKripke(2,3);
-              missionResults("13", 1, 1,1);
-              missionResults("124", 2, 1,1);
+              var v7 = new Visualization("#k7").initGame(2,3,true,true).goOnAMission("13",1).goOnAMission("124",2);
             </script>
           </div>
           <div class="slide">
@@ -504,30 +363,9 @@
             Therefore, all the worlds where one of them is not a Spy won't be possible anymore, and all the worlds with a combination of two of them are gone as well.
             This results in the following Kripke model:
             </p>
-            <div id="kripke8" class="kripke"><h3>Kripke Model    </h3></div>
-            <div id="ktable8" class="ktable"><h3> Knowledge Table</h3></div>
+            <div id="k8"></div>
             <script>
-              var force = d3.layout.force()
-              .charge(-5000)
-              .linkDistance(150)
-              .friction(.95)
-              .gravity(.18)
-              .size([width, height]);
-
-              var svg = d3.select("#kripke8")
-              .append("svg")
-              .attr("width", width)
-              .attr("height", height);
-
-              var ktable = d3.select("#ktable8")
-              .append("table")
-              .attr("onmouseout", "colorMe()"),
-              kheader = ktable.append("thead"),
-              kbody = ktable.append("tbody");
-
-              initKripke(2,3);
-              missionResults("13", 1, 1,1);
-              missionResults("145", 1, 1,1);
+              var v8 = new Visualization("#k8").initGame(2,3,true,true).goOnAMission("13",1).goOnAMission("145",2);
             </script>
             </div><div class="slide">
             <p>
@@ -554,30 +392,9 @@
             The last possible option for mission two is that the team that goes on a mission consists of 2 and two other players.
             If we look at the case where 2, 3 and 4 go on a mission, we get the following Kripke model:
             </p>
-            <div id="kripke9" class="kripke"><h3>Kripke Model    </h3></div>
-            <div id="ktable9" class="ktable"><h3> Knowledge Table</h3></div>
+            <div id="k9"></div>
             <script>
-              var force = d3.layout.force()
-              .charge(-5000)
-              .linkDistance(150)
-              .friction(.95)
-              .gravity(.18)
-              .size([width, height]);
-
-              var svg = d3.select("#kripke9")
-              .append("svg")
-              .attr("width", width)
-              .attr("height", height);
-
-              var ktable = d3.select("#ktable9")
-              .append("table")
-              .attr("onmouseout", "colorMe()"),
-              kheader = ktable.append("thead"),
-              kbody = ktable.append("tbody");
-
-              initKripke(2,3);
-              missionResults("13", 1, 1,1);
-              missionResults("234", 1, 1,1);
+              var v9 = new Visualization("#k9").initGame(2,3,true,true).goOnAMission("13",1).goOnAMission("234",1);
             </script>
             </div><div class="slide">
             <p>
@@ -827,27 +644,6 @@
           scrollOverflow: true,
         });
       });
-    </script>
-    <script>
-      var force = d3.layout.force()
-      .charge(-5000)
-      .linkDistance(150)
-      .friction(.95)
-      .gravity(.18)
-      .size([width, height]);
-
-      var svg = d3.select("#kripke0")
-      .append("svg")
-      .attr("width", width)
-      .attr("height", height);
-
-      var ktable = d3.select("#ktable0")
-      .append("table")
-      .attr("onmouseout", "colorMe()"),
-      kheader = ktable.append("thead"),
-      kbody = ktable.append("tbody");
-
-      initKripke(2,3);
     </script>
   </body>
 </html>
