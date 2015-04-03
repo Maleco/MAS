@@ -97,31 +97,32 @@
       <div id="visualization" class="section">
         <div class="content">
           <h1>Visualising Kripke models</h1>
+          <p>
           In addition to our analyses, we have developed an applet to visualize Kripke models.
           In this applet, all knowledge in a certain game state is displayed. 
-          The numbers stand for the worlds where those players are Spies.
-          E.g. in world 12, player 1 and 2 are Spies.
-          Furthermore, the lines between the worlds represent the connections for certain players. 
-          Different colors stand for different players. 
-          To see the connections for one specific player you can hover over his column in the table to the right.
-          At first you will see the Kripke model for the situation before the first mission. 
-          You can input the members of the team, the number of fails, etc.
-          There are two additional parameters: 
-          The first one is if the Spies have to fail every mission they're on, meaning that a succeful mission contained no spies.
-          The second parameter is if the number of fails is visible after every mission, 
-          giving players additional information about the amount of spies on a (failed) mission.
-          Pressing the "Go on a mission"-button will update the Kripke model to accurately represent the new knowledge that is gained from the mission you entered.<br>
-          To the right of the Kripke model is a table that shows what players would know if they were on the Good team.
+          The numbers stand for the worlds where those players are Spies,
+          e.g. in world 12, player 1 and 2 are Spies.
+          The lines between the worlds represent the connections for certain players. 
+          Different colors stand for different players.
+          Next to the Kripke model is a table that shows what players would know if they were on the Good team.
           The columns identify the players, with the rows of that column being the knowledge about the player in that row.
+          Hovering over a player's column in the right table highlights his connections.
           Green cells represent indicate the knowledge that that player is considered Good, red cells are considered Bad players.
           Yellow indicates that the alignment of the player is still unknown.<br>
-          It can also be the case that it becomes known that one of the players is a Spy. In that case, there are no worlds left where that player is Good, so all of the cells in his column will turn grey.
+          When it becomes common knowledge that one of the players is a Spy, there are no worlds left where that player is Good, so all of the cells in his column will turn grey.
+          At first you will see the complete Kripke model before any missions. 
+          Below the visualization you can input the members of the team and the number of fails.
+          Pressing the "Go on a mission"-button will update the Kripke model to accurately represent the new knowledge that is gained from the mission you entered.
+          The two "arrowed" buttons allow you to go through the history of the models.<br>
+          </p>
           <div id="k0"></div>
           <div id="controls">
             <form>
               <input type="text" size="10" name="missionTeam" placeholder="Mission team?" /> 
               <input type="number" size="1" name="numFails" placeholder="Number of fails?" /> 
-              <input type="button" onclick="v0.goOnAMission(missionTeam.value, numFails.value)" value="Go on a mission!" /><br />
+              <input type="button" onclick="v0.goOnAMission(missionTeam.value, numFails.value)" value="Go on a mission!" />
+              <input type="button" onclick="" value="<<" />
+              <input type="button" onclick="" value=">>" />
               <!--
               <label><input type="checkbox" name="forceFail" />Force spies to fail?</label> 
               <label><input type="checkbox" name="seeFails" />See number of fails?</label> <br />
@@ -492,7 +493,7 @@
             If 2 and 4 go on a mission, the resulting Kripke model is this one:<br><br>
 
             There's only one thing for certain: 5 is not a Spy.
-            Therefore, <i>M &#8872; &not;e</i>i>.
+            Therefore, <i>M &#8872; &not;e</i>.
             Since this is true in all worlds reachable for all players in any number of steps, this is common knowledge.
             The fourth mission has to succeed for the Good players to win the game.
             If the mission succeeds, the players on it have to be Good, since Spies who would succeed this mission are not rational agents.
