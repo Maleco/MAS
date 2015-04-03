@@ -286,7 +286,11 @@ GameState.prototype.missionResults = function(missionTeam, numFails) {
     }
   } else {
     if (out.seeFails) {
-      out.filterLenLCS(missionTeam, function(f) { return f == numFails; });
+      if (out.forceFail) {
+        out.filterLenLCS(missionTeam, function(f) { return f == numFails; });
+      } else {
+        out.filterLenLCS(missionTeam, function(f) { return f >= numFails; });
+      }
     } else {
       out.filterLenLCS(missionTeam, function(f) { return f != 0; });
     }

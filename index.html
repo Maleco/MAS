@@ -155,7 +155,7 @@
             No player can distinguish between the worlds where they are not Spies themselves. 
             From a world where a player is a Spy, that world is also the only reachable world, since the player then knows the actual alignment of all the players. 
             Now let's assume that propositional atom <b>a</b> stands for "player 1 is a Spy", <b>b</b> stands for "player 2 is a Spy", etcetera. 
-            Then we can also say that in world (1, 2), a and b are both true, and therefore (a^b) holds.
+            Then we can also say that in world (1, 2), a and b are both true, and therefore (a&and;b) holds.
             </p>
             </div><div class="slide">
             <p>
@@ -450,6 +450,11 @@
             If 1 fails this mission, the result will not be exactly the same as our previous analysis.
             The difference is that the world where 1 and 3 are both Spies is still a possibility for some agents.
             This is what the Kripke model will look like:<br><br>
+            <div id="k21"></div>
+            <script>
+              var v21 = new Visualization("#k21").initGame(2,3,false,true).goOnAMission("13",1);
+            </script>
+            </div><div class="slide">
 
             Even though the Good players gained a lot of information, they know less than in the previous analysis.
             It is, however, still the case that <i>M &#8872; &not;c &rarr; K<sub>3</sub>a</i>.
@@ -489,7 +494,11 @@
             In the case of two Spies who both fail, the Spies are known to the Good players, and the game is over.
             In all other cases, four possible worlds remain.
             We'll look at one of these cases.
-            If 2 and 4 go on a mission, the resulting Kripke model is this one:<br><br>
+            If 2 and 4 go on a mission, the resulting Kripke model is as follows:<br><br>
+            <div id="k22"></div>
+            <script>
+              var v22 = new Visualization("#k22").initGame(2,3,false,true).goOnAMission("24",2);
+            </script>
 
             There's only one thing for certain: 5 is not a Spy.
             Therefore, <i>M &#8872; &not;e</i>i>.
