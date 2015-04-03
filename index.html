@@ -606,12 +606,13 @@
       <div id="analysis3" class="section">
         <div class="content">
           <h1>Voting behavior of Spies</h1>
+					<p>
           In our last two analyses, we assumed that Spies always assume the role of a Good player in the voting stage of the game, 
           unless doing so loses them the game, or they can automatically win the game by not doing so.
           But how does this actually work? <br>
           To assume the role of a Good player, the Spies have to know what they should know if they were Good players.
           In the Kripke model, this is always directly visible: you just have to look at the connections for Spies from the worlds where they are Good.
-          <br>
+					</p><p>
           Let's look at an example: suppose that player 1 and 2 are Spies, and that the first mission consists of player 1 and 3.
           We assume that Spies have to fail a mission, so the mission shows one fail.
           In this case, player 3 knows that player 1 is a Spy.
@@ -631,10 +632,11 @@
           K<sub>1</sub>c))</i> and <i>M<sub>12</sub> &#8872;K<sub>1</sub>( K<sub>4</sub>(&not; a &rarr;  K<sub>1</sub>c))</i>.
           So player 1 knows that he has to vote as if he knows 3 is a Spy.
           He shouldn't approve of missions with 3 on it, unless it outright wins him the game, or it directly saves him from a loss.
-          <br>
+					</p><p>
           We can use similar reasoning to see how Spies should vote in other situation.
           If you look at the Kripke model, it's always easy to see.
           Just looking at the connections from the worlds where players are Good shows how their behavior should be.
+					</p>
         </div>
       </div>
 
