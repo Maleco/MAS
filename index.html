@@ -24,7 +24,7 @@
         <li data-menuanchor="introAnchor" class="active"><a href="#introAnchor">     Introduction</a></li>
         <li data-menuanchor="resistanceAnchor"><a href="#resistanceAnchor">The Resistance</a></li>
         <li data-menuanchor="visualizationAnchor"><a href="#visualizationAnchor">Visualization</a></li>
-        <li data-menuanchor="analysisAnchor"><a href="#analysisAnchor">  Analysis</a></li>
+        <li data-menuanchor="analysisAnchor"><a href="#analysisAnchor">  Analysis(1)</a></li>
         <li data-menuanchor="analysisAnchor2"><a href="#analysisAnchor2">Analysis(2)</a></li>
         <li data-menuanchor="analysisAnchor3"><a href="#analysisAnchor3">Analysis(Voting)</a></li>
         <li data-menuanchor="aboutAnchor"><a href="#aboutAnchor">     About</a></li>
@@ -98,39 +98,30 @@
         <div class="content">
           <h1>Visualising Kripke models</h1>
           <p>
-          In addition to our analyses, we have developed an applet to visualize Kripke models.
-          In this applet, all knowledge in a certain game state is displayed. 
+          In addition to our analyses, we have developed an applet to visualize knowledge at various game states.
+          In this applet, all knowledge in a certain game state is displayed by means of an interactive Kripke model.
           The numbers stand for the worlds where those players are Spies,
           e.g. in world 12, player 1 and 2 are Spies.
-          The lines between the worlds represent the connections for certain players. 
-          Different colors stand for different players.
+          The lines between the worlds represent the accessibility relations for certain players, where different colors stand for different players.
           Next to the Kripke model is a table that shows what players would know if they were on the Good team.
           The columns identify the players, with the rows of that column being the knowledge about the player in that row.
           Hovering over a player's column in the right table highlights his connections.
-          Green cells represent indicate the knowledge that that player is considered Good, red cells are considered Bad players.
-          Yellow indicates that the alignment of the player is still unknown.<br>
-          When it becomes common knowledge that one of the players is a Spy, there are no worlds left where that player is Good, so all of the cells in his column will turn grey.
+          <ul>
+            <li>Green cells indicate knowledge that that player is Good.</li>
+            <li>Red cells indicate knowledge that that player is Bad.</li>
+            <li>Yellow cells indicate that the alignment of that player is still unknown.</li>
+          </ul>
+          If it becomes common knowledge that one of the players is a Spy, there are no worlds left where that player is Good. 
+          At this point, the assumption that he is Good is inconsistent, so all of the cells in his column will turn grey.
           At first you will see the complete Kripke model before any missions. 
           Below the visualization you can input the members of the team and the number of fails.
           Pressing the "Go on a mission"-button will update the Kripke model to accurately represent the new knowledge that is gained from the mission you entered.
-          The two "arrowed" buttons allow you to go through the history of the models.<br>
+          The two "arrowed" buttons allow you to go through the game history.
+          The "New Game" button allows you to re-initialize the game, potentially with different setup parameters.<br>
           </p>
           <div id="k0"></div>
-          <div class="kcontrols">
-            <form>
-              <input type="text" size="10" name="missionTeam" placeholder="Mission team?" /> 
-              <input type="number" size="1" name="numFails" placeholder="Number of fails?" /> 
-              <input type="button" onclick="v0.goOnAMission(missionTeam.value, numFails.value)" value="Go on a mission!" />
-              <input type="button" onclick="v0.goBack()" value="<<" />
-              <input type="button" onclick="v0.goForward()" value=">>" />
-              <!--
-              <label><input type="checkbox" name="forceFail" />Force spies to fail?</label> 
-              <label><input type="checkbox" name="seeFails" />See number of fails?</label> <br />
-              -->
-            </form>
-          </div>
           <script>
-            var v0 = new Visualization("#k0").initGame(2,3,false,true);
+            var v0 = new Visualization("#k0").initGame(2,3,true,true).showControls();
           </script>
         </div>
       </div>
@@ -138,7 +129,7 @@
 
       <div id="analysis" class="section">
         <div class="content">
-          <h1>Analysis</h1> 
+          <h1>Analysis (1)</h1> 
           <div class="slide">
             <h2>Simple game</h2>  
             <p>
@@ -423,7 +414,7 @@
           <div class="slide">
             <h1>Failing or succeeding the first mission?</h1>
             <p>
-            For our last analysis, we looked at the simplest version of the game, where Spies had to fail every mission they were on.
+            In our previous analysis, we looked at the simplest version of the game, where Spies had to fail every mission they were on.
             We're now going to make it a little bit complicated: we're going to give Spies the freedom of choice.
             This will probably result in more interesting games, and it gives rise to some new possible game-states.
             Analyzing all new possibilities will take a lot of time, and might not be that interesting.
@@ -605,9 +596,10 @@
       <!-- END ANALYSIS(2) PAGE-->
       <div id="analysis3" class="section">
         <div class="content">
-          <h1>Voting behavior of Spies</h1>
+          <h1>Analysis (Voting)</h1>
+          <h2>Voting behavior of Spies</h2>  
 					<p>
-          In our last two analyses, we assumed that Spies always assume the role of a Good player in the voting stage of the game, 
+          In our previous two analyses, we assumed that Spies always assume the role of a Good player in the voting stage of the game, 
           unless doing so loses them the game, or they can automatically win the game by not doing so.
           But how does this actually work? <br>
           To assume the role of a Good player, the Spies have to know what they should know if they were Good players.

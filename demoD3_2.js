@@ -41,12 +41,18 @@ function Visualization(containerId, width, height) {
       .gravity(.18)
       .size([width, height]);
 
-  this.svg = this.container
-    .append("div")
-      .classed("kripke", true)
-    .append("svg")
+  var kripkeDiv = this.container.append("div")
+      .classed("kripke", true);
+  this.svg = kripkeDiv.append("svg")
       .attr("width", width)
       .attr("height", height);
+
+  kripkeDiv.append("div")
+      .classed("ktoggle", true)
+    .append("input")
+      .attr("type","button")
+      .attr("value","Toggle Controls")
+      .on("click", function() { vis.toggleControls(); });
 
   //TODO: ktable and color button stuff
   //var colorButtons = container
@@ -60,15 +66,61 @@ function Visualization(containerId, width, height) {
       .on("mouseout", function() { vis.focus(); });
   this.kheader = ktable.append("thead").append("tr");
   this.kbody = ktable.append("tbody");
+
+  // Controls
+  this.kcontrols = this.container
+    .append("div")
+      .classed("kcontrols", true)
+      .classed("khidden", true);
+
+  var kform = this.kcontrols.append("form");
+  this.controlsHidden = true;
+  this.missionTeamInput = kform.append("input")
+      .attr("type","text")
+      .attr("size","10")
+      .attr("placeholder", "Mission team?")[0][0];
+  this.numFailsInput = kform.append("input")
+      .attr("type","number")
+      .attr("size","1")
+      .attr("placeholder", "Number of fails?")[0][0];
+  kform.append("input")
+      .attr("type","button")
+      .attr("value","Go on a mission!")
+      .on("click",function() { vis.goOnAMissionUI(); });
+
+  kform.append("text").text(" ");
+  this.backButton = kform.append("input")
+      .attr("type","button")
+      .attr("value","<<")
+      .on("click",function() { vis.goBack(); });
+  this.forwardButton = kform.append("input")
+      .attr("type","button")
+      .attr("value",">>")
+      .on("click",function() { vis.goForward(); });
+  kform.append("text").text(" ");
+  kform.append("input")
+      .attr("type","button")
+      .attr("value","New Game")
+      .on("click",function() { vis.initGameUI(); });
 }
 
 Visualization.prototype.initGame = function(numSpies, numResistance, forceFail, seeFails) {
-  //TODO
   this.history = [];
   this.histNdx = -1;
-  this.pushGameState(new GameState(numSpies, numResistance, forceFail, seeFails));
+  return this.pushGameState(new GameState(numSpies, numResistance, forceFail, seeFails));
+}
 
-  return this;
+Visualization.prototype.initGameUI = function(numSpies, numResistance, forceFail, seeFails) {
+  var numSpies, numResistance, forceFail, seeFails;
+  if ((numSpies = parseInt(prompt("Number of spies?", "2"))) == NaN) {
+    return;
+  }
+  if ((numResistance = parseInt(prompt("Number of good guys?", "3"))) == NaN) {
+    return;
+  }
+  forceFail = window.confirm("Force spies to fail?");
+  seeFails = window.confirm("See number of failures?");
+  return this.initGame(numSpies, numResistance, forceFail, seeFails);
 }
 
 Visualization.prototype.pushGameState = function(gameState) {
@@ -169,11 +221,34 @@ Visualization.prototype.drawData = function(gameState) {
         var possible = gameState.spyKnowledge(p1,p2);
         return possible == 2 ? "#222" : possible > 0 ? "red" : possible < 0 ? "green" : "yellow";
       });
+
+  this.backButton.attr("disabled", (this.histNdx > 0 ? null : true));
+  this.forwardButton.attr("disabled", (this.histNdx < this.history.length-1 ? null : true));
 }
 
 Visualization.prototype.goOnAMission = function(missionTeam, numFails) {
-  this.pushGameState(this.currentGameState.missionResults(missionTeam, numFails));
+  return this.pushGameState(this.currentGameState.missionResults(missionTeam, numFails));
+}
 
+Visualization.prototype.goOnAMissionUI = function() {
+  return this.goOnAMission(this.missionTeamInput.value, this.numFailsInput.value);
+}
+
+Visualization.prototype.toggleControls = function() {
+  if (this.kcontrols.classed("khidden")) {
+    this.kcontrols.classed("khidden",false);
+  } else {
+    this.kcontrols.classed("khidden",true);
+  }
+  return this;
+}
+Visualization.prototype.hideControls = function() {
+  this.kcontrols.classed("khidden", true);
+  return this;
+}
+
+Visualization.prototype.showControls = function() {
+  this.kcontrols.classed("khidden", false);
   return this;
 }
 
