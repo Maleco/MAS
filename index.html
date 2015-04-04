@@ -54,6 +54,7 @@
       <div id="resistance" class="section">
         <div class="content">
           <h1>The Resistance</h1> 
+          <div class="slide">
           <h2>Game Description</h2>
           <p>
           The Resistance is a social deduction game, commonly compared to the games Werewolves and 
@@ -75,54 +76,117 @@
           Therefore they know everything they should know, and they won't make irrational choices. 
           We also assume that Spies will act as Good players when choosing a mission team, so they don't give their evil intentions away. 
           They will only show their true intentions if it means they will automatically win the game, or if it's the only way to prevent a loss.
+          </p>
 
-          <h2>The knowledge in The Resistance</h2>
+          </div><div class="slide">
+          <h2>The knowledge of The Resistance</h2>
+          <p>
           The Resistance is a game where the knowledge of the players plays a large role. 
           Good players have to figure out who the Spies are, so they can leave them out of missions. 
           Spies need to know what the Good players know, so they can assume the right tactic.
           We can display all of the knowledge in Kripke models. The model for the initial game state with 5 players will always look like this:
           <br><br>
-          In this representation, the numbers stand for the players that are Spies in that world.
-          So, world (1,3) is the world where player 1 and 3 are Spies, and the rest of the players are Good. 
+          <div id="introK"></div>
+          <script>
+            var vIntro = new Visualization("#introK").initGame(2,3,true,true);
+          </script>
+          In this representation, the numbers stand for the players that are Spies in that world, as elaborated on in the next section.
           In our Kripke models, we assume that all worlds are reflexive for all players.
           There should never be the inconsistency that players don't hold the world they are in for possible.
+          Indeed, since all the accessibility relations are all reflexive, transitive, and euclidean, this model is in S5.
           </p><p>
           It becomes apparent from the Kripke model that players can't distinguish between worlds where they are not Spies at first. 
           But in a world where a player is a Spy, he only holds that world for possible. This is because a Spy always knows the true state of the game. 
-          It's also interesting to note that there are no double worlds, and all worlds are connected to each other with a finite number of connections.
+          It's also interesting to note that there are no double worlds, and all worlds are reachable by some agent within a single connection.
+          </div>
         </div>
       </div>
       <!-- END INTRO PAGE-->
 
       <div id="visualization" class="section">
         <div class="content">
-          <h1>Visualising Kripke models</h1>
-          <p>
-          In addition to our analyses, we have developed an applet to visualize knowledge at various game states.
-          In this applet, all knowledge in a certain game state is displayed by means of an interactive Kripke model.
-          The numbers stand for the worlds where those players are Spies,
-          e.g. in world 12, player 1 and 2 are Spies.
-          The lines between the worlds represent the accessibility relations for certain players, where different colors stand for different players.
-          Next to the Kripke model is a table that shows what players would know if they were on the Good team.
-          The columns identify the players, with the rows of that column being the knowledge about the player in that row.
-          Hovering over a player's column in the right table highlights his connections.
-          <ul>
-            <li>Green cells indicate knowledge that that player is Good.</li>
-            <li>Red cells indicate knowledge that that player is Bad.</li>
-            <li>Yellow cells indicate that the alignment of that player is still unknown.</li>
-          </ul>
-          If it becomes common knowledge that one of the players is a Spy, there are no worlds left where that player is Good. 
-          At this point, the assumption that he is Good is inconsistent, so all of the cells in his column will turn grey.
-          At first you will see the complete Kripke model before any missions. 
-          Below the visualization you can input the members of the team and the number of fails.
-          Pressing the "Go on a mission"-button will update the Kripke model to accurately represent the new knowledge that is gained from the mission you entered.
-          The two "arrowed" buttons allow you to go through the game history.
-          The "New Game" button allows you to re-initialize the game, potentially with different setup parameters.<br>
-          </p>
-          <div id="k0"></div>
-          <script>
-            var v0 = new Visualization("#k0").initGame(2,3,true,true).showControls();
-          </script>
+          <h1>Visualising knowledge in The Resistance</h1>
+          <div class="slide">
+            <h2>Kripke models</h2>
+            <p>
+            In addition to our analyses, we have developed a visualization of knowledge at various game states.
+            In this applet, all knowledge in a certain game state is displayed by means of an interactive Kripke model.
+            The numbers stand for the worlds where those players are Spies, e.g. in world 12, player 1 and 2 are Spies.
+            The lines between the worlds represent the accessibility relations for certain players, where different colors stand for different players.
+            </p><p>
+            Beside each Kripke model is a table that shows what players would know if they were on the Good team.
+            The columns identify the players, with the rows of that column being the knowledge about the player in that row.
+            Hovering over a player's column in the right table highlights his connections.
+            Green cells indicate knowledge that that player is Good.
+            Red cells indicate knowledge that that player is Bad.
+            Yellow cells indicate that the alignment of that player is still unknown.
+            If it becomes common knowledge that one of the players is a Spy, there are no worlds left where that player is Good. 
+            At this point, the assumption that he is Good is inconsistent, so all of the cells in his column will turn grey.
+            </p><p>
+            In the scenario below, player 3 knows player 4 is Good and that 5 is a Spy, but does not know about 1 or 2.
+            </p>
+            <div id="k01"></div>
+            <script>
+              var v01 = new Visualization("#k01").initGame(2,3,true,true).goOnAMission("12",1).goOnAMission("5",1);
+            </script>
+          </div><div class="slide">
+            <h2>Controls</h2>
+            <p>
+            Initially, you will see the complete Kripke model representing a game state after a pre-determined set of missions. 
+            Each visualization has an optional set of controls that can be used to further manipulate the visualization.
+            These controls can be toggled with the "Toggle Controls" button.
+            </p><p>
+            Using these controls, you can input the members of the mission team and the number of fails from that mission.
+            Pressing the "Go on a mission" button will update the Kripke model to represent the new knowledge that is gained from the mission you entered.
+            </p><p>
+            The two "arrowed" buttons allow you to go through previous and future game states.
+            The "New Game" button allows you to re-initialize the game, potentially with different setup parameters.<br>
+            </p>
+            <div id="k02"></div>
+            <script>
+              var v02 = new Visualization("#k02").initGame(2,3,true,true).showControls();
+            </script>
+          </div><div class="slide">
+            <h2>Setup parameters</h2>
+            <p>
+            Our analysis covers only the 5-person game, with 2 Spies and 3 Good characters.
+            However, our visualization supports games with arbitrary number of spies and Good characters.
+            Below is an example of a game state with 2 Spies and 5 Good characters.
+            <em>Note</em>: Games with lots of players may generate very large Kripke models.
+            </p>
+            <div id="k03"></div>
+            <script>
+              var v03 = new Visualization("#k03").initGame(2,5,false,true).goOnAMission("14",1);
+            </script>
+            <p>
+            In addition, the visualization supports two additional setup parameters which represent slight variations to the game rules.
+            <ul>
+              <li><em>forceFail</em>: If a spy is on a mission, they must fail it. This parameter is true for our first analysis, and our second analysis explores when this parameter is false.</li>
+              <li><em>seeFails</em>: Good characters only see the results of the mission, but cannot see how many failures there were. This parameter is always true throughout our analysis.</li>
+            </ul>
+            Both of these setup parameters affect how mission results update the Kripke model, as detailed in the next slide.
+            </p>
+          </div><div class="slide">
+            <h2>Update rules</h2>
+            <p>
+            Each mission result gives partial public information as to who is a Spy.
+            Our visualization updates by iterating across all possible worlds, removing those in which it is impossible for the observed mission results to occur (considering the setup parameters).
+            Mission results can thus be viewed as public announcements.
+            </p><p>
+            For each world, the size of the overlap between the spies at that world and the mission team is calculated.
+            We denote this value <em>lenLCS</em>, for the length of the largest common subset between the hypothetical spies and the mission team.
+            Further, we denote the number of failures on the mission by <em>numFails</em>.
+            </p><p>
+            <ul>
+              <li>If <em>forceFail</em> and <em>seeFails</em> are both true, then a world will remain iff <em>lenLCS</em> equals <em>numFails</em>.
+
+              <li>If <em>forceFail</em> is false but <em>seeFails</em> is true, then a world will remain iff <em>lenLCS</em> is greater than or equal to <em>numFails</em>.
+              <li>If <em>forceFail</em> is true but <em>seeFails</em> is false, then a world will remain iff <em>lenLCS</em> and <em>numFails</em> are either both greater than zero or both equal to zero.
+              <li>If <em>forceFail</em> and <em>seeFails</em> are both false, then a world will remain iff <em>numFails</em> is zero or <em>lenLCS</em> and <em>numFails</em> are both greater than zero.
+            </ul>
+            Note that if <em>forceFail</em> is false and <em>numFails</em> is zero, then no worlds will be removed.
+            </p>
+          </div>
         </div>
       </div>
       <!-- END visualization PAGE-->
@@ -401,7 +465,7 @@
             which can especially give quite a lot away if players aren't completely rational agents.
             It is also worth noting that even when you limit the possibilities of the Spies by making them fail all missions, they still have a decent chance of winning the
             game.
-            However, this chance does increase if they have a choice, which is what we'll be looking at on the analysis.
+            However, this chance does increase if they have a choice, which is what we'll be looking at in our next analysis.
             </p>
           </div>
         </div>
@@ -656,7 +720,7 @@
           slidesNavigation: true,
           slidesNavPosition: 'bottom',
           paddingTop: 50,
-          paddingBottom: 30,
+          paddingBottom: 75,
           verticalCentered: false,
           scrollOverflow: true,
         });
